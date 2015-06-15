@@ -1,6 +1,11 @@
 package playerCreator;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class PlayerCreator {
 
@@ -17,6 +22,11 @@ public class PlayerCreator {
 		int[] stats = columnSelection(keyb, abilities);
 		for(int i = 0; i < stats.length; i++){
 			println(stats[i]+"");
+		}
+		int[] weaponProfs = weaponProfX(classes);
+		
+		for(int i = 0; i < weaponProfs.length; i++){
+			print(weaponProfs[i]+",	");
 		}
 		
 		
@@ -768,4 +778,114 @@ public class PlayerCreator {
 	public static void error(String s){//Same as println but with "Error: " before the message
 		System.out.println("Error: " + s);
 	}
+	
+	public static int[] removeDuplicates(int[] array){
+	    boolean[] set = new boolean[41]; //values must default to false
+	    int totalItems = 0;
+
+	    for( int i = 0; i < array.length; ++i ){
+	        if( set[array[i]] == false ){
+	            set[array[i]] = true;
+	            totalItems++;
+	        }
+	    }
+
+	    int[] ret = new int[totalItems];
+	    int c = 0;
+	    for( int i = 0; i < set.length; ++i ){
+	        if( set[i] == true ){
+	            ret[c++] = i;
+	        }
+	    }
+	    return ret;
+	}
+	
+	public static int[] mergeArrays(int[] a, int[] b, int[] c){
+		
+		int[] weaponProfs = new int[a.length + b.length + c.length];
+		
+		for(int i = 0; i < a.length; i++){
+			weaponProfs[i] = a[i];
+		}
+		for(int i = 0; i < b.length; i++){
+			weaponProfs[i+a.length] = b[i];
+		}
+		for(int i = 0; i < c.length; i++){
+			weaponProfs[i+a.length+b.length] = c[i];
+		}
+		
+		int[] allowedWeapons;
+		allowedWeapons = removeDuplicates(weaponProfs);
+		
+		return allowedWeapons;
+	}
+	
+	public static int[] weaponProfX(int[] classes){
+		
+		int[] a = new int[0];
+		int[] b = new int[0];
+		int[] c = new int[0];
+		int[] cleric = {2,6,7,11,16};
+		int[] druid = {2,4,5,7,13,14,15,16};
+		int[] m_u = {4,5,16};
+		int[] thief = {2,4,5,14,17,18,19,33};
+		int[] monk = {1,2,3,4,8,9,10,12,15,16};
+		int[] fighter = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40};
+		int[] weaponProfs;
+		
+		
+		for(int i = 0; i<classes.length; i++){
+			if(classes[i] == 1 || classes[i] == 2 || classes[i] == 5 || classes[i] == 6 || classes[i] == 7 || classes[i] == 12){
+				if(i == 0)
+					a = fighter;
+				else if(i == 1)
+					b = fighter;
+				else if(i == 2)
+					c = fighter;
+			else if(classes[i] == 3)
+				if(i == 0)
+					a = cleric;
+				else if(i == 1)
+					b = cleric;
+				else if(i == 2)
+					c = cleric;
+			}
+			else if(classes[i] == 4){
+				if(i == 0)
+					a = druid;
+				else if(i == 1)
+					b = druid;
+				else if(i == 2)
+						c = druid;
+			}
+			else if(classes[i] == 8 || classes[i] == 9){
+				if(i == 0)
+					a = m_u;
+				else if(i == 1)
+					b = m_u;
+				else if(i == 2)
+					c = m_u;
+			}
+			else if(classes[i] == 10 || classes[i] == 11){
+				if(i == 0)
+					a = thief;
+				else if(i == 1)
+					b = thief;
+				else if(i == 2)
+					c = thief;
+			}
+			else if(classes[i] == 13){
+				if(i == 0)
+					a = monk;
+				else if(i == 1)
+					b = monk;
+				else if(i == 2)
+					c = monk;
+			}
+		}
+	
+		weaponProfs = mergeArrays(a,b,c);
+		
+		return weaponProfs;
+		}
 }
