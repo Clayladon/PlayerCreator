@@ -1,11 +1,6 @@
 package playerCreator;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class PlayerCreator {
 
@@ -25,10 +20,7 @@ public class PlayerCreator {
 		}
 		int[] weaponProfs = weaponProfX(classes);
 		
-		for(int i = 0; i < weaponProfs.length; i++){
-			print(weaponProfs[i]+",	");
-		}
-		
+		weaponChoices(weaponProfs);
 		
 		
 		
@@ -888,4 +880,17 @@ public class PlayerCreator {
 		
 		return weaponProfs;
 		}
+	
+	public static void weaponChoices(int[] allowedWeapons){
+		
+		String[] list = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
+				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
+				"Short Sword", "Bastard Sword", "Falchion Sword", "Kopache Sword", "2H Sword", "Battle Axe", "Caltrop",
+				"Garrot", "Knife", "Lance", "Lasso", "Man Catcher", "Morning Star", "Military Pick", "Sap", "Trident",
+				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
+		
+		for(int i = 0; i < allowedWeapons.length; i++){
+			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
+		}
+	}
 }
