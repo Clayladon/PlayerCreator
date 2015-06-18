@@ -780,24 +780,24 @@ public class PlayerCreator {
 	}
 	
 	public static int[] removeDuplicates(int[] array){
-	    boolean[] set = new boolean[41]; //values must default to false
+	    boolean[] range = new boolean[41]; //values must default to false
 	    int totalItems = 0;
 
 	    for( int i = 0; i < array.length; ++i ){
-	        if( set[array[i]] == false ){
-	            set[array[i]] = true;
+	        if( range[array[i]] == false ){
+	            range[array[i]] = true;
 	            totalItems++;
 	        }
 	    }
 
-	    int[] ret = new int[totalItems];
+	    int[] sortedArray = new int[totalItems];
 	    int c = 0;
-	    for( int i = 0; i < set.length; ++i ){
-	        if( set[i] == true ){
-	            ret[c++] = i;
+	    for( int i = 0; i < range.length; ++i ){
+	        if( range[i] == true ){
+	            sortedArray[c++] = i;
 	        }
 	    }
-	    return ret;
+	    return sortedArray;
 	}
 	
 	public static int[] mergeArrays(int[] a, int[] b, int[] c){
