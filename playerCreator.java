@@ -882,6 +882,21 @@ public class PlayerCreator {
 		}
 	
 	public static void weaponChoices(int[] allowedWeapons){
+		if(classes[0] == 6 || classes[classes.length/2] == 6 || classes[classes.length-1] == 6)		
+			int[] weapons = new int[6];
+		else if(classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)		
+			int[] weapons = new int[5];
+		else if(classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5)		
+			int[] weapons = new int[4];
+		else if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || classes[classes.length-1] == 2
+				classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
+			int[] weapons = new int[3];
+		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
+				classes[classes.length-1] == 4 classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 classes[0] == 11 || 
+				classes[classes.length/2] == 11 || classes[classes.length-1] == 11)
+			int[] weapons = new int[2];
+		else
+			int[] weapons = new int[1];
 		
 		String[] list = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
 				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
