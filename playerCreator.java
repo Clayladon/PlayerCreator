@@ -663,7 +663,7 @@ public class PlayerCreator {
 	}
 
 	/**
-	 * makes the ability spread sheet, 7 attributes 20 times.
+	 * makes the ability spread sheet, 7 attributes 20 times. This method is called in main.
 	 * @param abilityDice, the array containing the amount of dice to be rolled per attribute.
 	 * @return the 2d array of all the rolls.
 	 */
@@ -677,7 +677,8 @@ public class PlayerCreator {
 		return sheet;
 	}
 	/**
-	 * This method creates an array of various sizes and fills it with d6 roll values.
+	 * This method creates an array of various sizes corresponding to the optimized array values, and fills it with d6 roll values. Used in spreadSheet.
+	 * ex: fighter strength array is filled with 9 d6 rolls.
 	 * @param numDice, the size of the array, contained in the abilityDice array.
 	 * @return an array of the rolls for the specified attribute.
 	 */
@@ -689,7 +690,7 @@ public class PlayerCreator {
 		return rolls;
 	}
 	/**
-	 * Returns the sum of the top 3 rolls of an attribute.
+	 * Returns the sum of the top 3 rolls of an attribute. Used in spreadSheet. (It`s a selection sort that spits out the sum of the last 3 values.
 	 * @param diceRolls, the array containing the value of the rolls for said ability.
 	 * @return the int that represents the ability score, the sum of the top 3 rolls.
 	 */
@@ -706,7 +707,7 @@ public class PlayerCreator {
 		return (diceRolls[diceRolls.length-1]+diceRolls[diceRolls.length-2]+diceRolls[diceRolls.length-3]);
 	}
 	/**
-	 * Takes in the users choice of stats, from the 20 columns.
+	 * Takes in the users choice of stats, from the 20 columns. Used in main.
 	 * @param chosenColumn, int from the user.
 	 * @param spreadSheet, the 2d array with all of the rolled stats.
 	 * @return the characters base stats, before any racial modification.
@@ -742,6 +743,11 @@ public class PlayerCreator {
 		}
 		return chosenStats;
 	}
+	
+	/**This method returns a list of integers that correspond to specific weapons, the list represents the weapons that the character can become proficient in.
+	 * @param classes, an array representing the chosen classes of the character.
+	 * @return the list of allowable weapons.
+	 */
 	public static int[] weaponProfX(int[] classes){ //TODO Weapon Proficiency selection methods
 		
 		int[] a = new int[0];
@@ -808,6 +814,14 @@ public class PlayerCreator {
 		weaponProfs = mergeArrays(a,b,c);
 		return weaponProfs;
 	}
+	
+	/**
+	 * Used in weaponProfX, this method merges the lists of allowable weapons of different classes for multi-classed characters.
+	 * @param a allowed weapons for 1st class.
+	 * @param b allowed weapons for 2nd class.
+	 * @param c allowed weapons for 3rd class.
+	 * @return same return as weaponProfX.
+	 */
 	public static int[] mergeArrays(int[] a, int[] b, int[] c){
 		
 		int[] weaponProfs = new int[a.length + b.length + c.length];
@@ -827,6 +841,12 @@ public class PlayerCreator {
 		
 		return allowedWeapons;
 	}
+	
+	/**
+	 * Used in mergeArrays, this method removes duplicates and sorts the list of allowable weapons.
+	 * @param array, the merged array of the allowable weapons.
+	 * @return a sorted array of the allowable weapons without any duplicates.
+	 */
 	public static int[] removeDuplicates(int[] array){
 	    boolean[] range = new boolean[41]; //values must default to false
 	    int totalItems = 0;
@@ -873,6 +893,7 @@ public class PlayerCreator {
 		for(int i = 0; i < allowedWeapons.length; i++){
 			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
 		}
+		
 		return weapons;
 	}
 	public static void println(String s){ //System.out.println shortcut
