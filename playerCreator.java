@@ -3,24 +3,18 @@ package playerCreator;
 import java.util.Scanner;
 
 public class PlayerCreator {
-
 	public static void main(String[] args) {
 		Scanner keyb = new Scanner(System.in); //Initialize scanner for user input
 		int race = raceSelection(keyb); //Collect important information from user
 		int gender = genderSelection(keyb);
 		int numClasses = numClassesSelection(keyb, race);
-		int[] classes = classesSelection(keyb, race, numClasses);	
-		//int? String? int[]? weaponProfs = weaponProfsSelection(keyb, classes);
-		int[] abilityDice = abilityDiceSelection(classes);
+		int[] classes = classesSelection(keyb, race, numClasses);
 		int alignment = alignmentSelection(keyb, classes);
+		int[] abilityDice = abilityDiceSelection(classes);
 		int[][] abilities = spreadSheet(abilityDice);
 		int[] stats = columnSelection(keyb, abilities);
-		for(int i = 0; i < stats.length; i++){
-			println(stats[i]+"");
-		}
-		int[] weaponProfs = weaponProfX(classes);
-		
-		weaponChoices(weaponProfs);
+		int[] allowedWeapons = weaponProfX(classes);
+		int[] weapons = weaponChoices(allowedWeapons, classes);
 		
 		
 		
@@ -399,6 +393,33 @@ public class PlayerCreator {
 		return classes;
 	}
 	/**
+	 * Used in classSelection method to determine if the character has chosen multiple of the same class
+	 * @param classes the integer array of classes chosen
+	 * @return whether or not multiple classes were chosen
+	 */
+	public static boolean isRepeatedClasses(int[] classes){
+		int[] copy = new int[3];
+		for(int i=0; i<classes.length; i++){
+			copy[i] = classes[i];
+			if(i==0){
+				if(classes[i] == copy[1] || classes[i] == copy[2])
+					return true;
+			}
+			else if (i==1){
+				if(classes[i] == copy[0] || classes[i] == copy[2])
+					return true;
+			}
+			else if (i==2){
+				if(classes[i] == copy[0] || classes[i] == copy[1])
+					return true;
+			}
+			else
+				error("Invalid i value in method: isRepeatedClasses");
+				
+		}
+		return false;
+	}
+	/**
 	 * Used in main to determine which alignment is chosen by the user
 	 * @param keyb keyboard scanner for user input
 	 * @param classes the integer array of classes chosen
@@ -530,7 +551,7 @@ public class PlayerCreator {
 	 * @param classes the integer array of classes chosen
 	 * @return array of the final number of dice a character will roll of each ability score
 	 */
-	public static int[] abilityDiceSelection(int[] classes){ //TODO Ability dice selection method
+	public static int[] abilityDiceSelection(int[] classes){ //TODO Ability dice selection methods
 		int[] cavalierAbilityDice = {8,6,4,7,9,3,5};
 		int[] paladinAbilityDice = {7,5,8,3,6,9,4};
 		int[] clericAbilityDice = {7,4,9,5,8,6,3};
@@ -593,7 +614,6 @@ public class PlayerCreator {
 			else if(classes[1] == 13)
 				secondClassAbilityDice = monkAbilityDice;
 		}
-		
 		if(classes.length > 2){ //If the character is triple class, these statements apply
 			if(classes[2] == 1)
 				thirdClassAbilityDice = cavalierAbilityDice;
@@ -618,35 +638,7 @@ public class PlayerCreator {
 			else if(classes[2] == 13)
 				thirdClassAbilityDice = monkAbilityDice;
 		}
-		
 		return optimizeArray(firstClassAbilityDice, secondClassAbilityDice, thirdClassAbilityDice);
-	}
-	/**
-	 * Used in classSelection method to determine if the character has chosen multiple of the same class
-	 * @param classes the integer array of classes chosen
-	 * @return whether or not multiple classes were chosen
-	 */
-	public static boolean isRepeatedClasses(int[] classes){
-		int[] copy = new int[3];
-		for(int i=0; i<classes.length; i++){
-			copy[i] = classes[i];
-			if(i==0){
-				if(classes[i] == copy[1] || classes[i] == copy[2])
-					return true;
-			}
-			else if (i==1){
-				if(classes[i] == copy[0] || classes[i] == copy[2])
-					return true;
-			}
-			else if (i==2){
-				if(classes[i] == copy[0] || classes[i] == copy[1])
-					return true;
-			}
-			else
-				error("Invalid i value in method: isRepeatedClasses");
-				
-		}
-		return false;
 	}
 	/**
 	 * Used in abilityDiceSelection method to compile the arrays of class ability dice to return the best possible number of dice for that character to roll.
@@ -668,6 +660,21 @@ public class PlayerCreator {
 				x[i] = c[i];
 		}
 		return x;
+	}
+
+	/**
+	 * makes the ability spread sheet, 7 attributes 20 times.
+	 * @param abilityDice, the array containing the amount of dice to be rolled per attribute.
+	 * @return the 2d array of all the rolls.
+	 */
+	public static int[][] spreadSheet(int[] abilityDice){ //TODO Ability Selection methods
+		int[][] sheet = new int[7][20];
+		for(int i = 0; i < 20; i++){
+			for(int j = 0; j < 7; j++){
+				sheet[j][i] = abilityScore(diceRolls(abilityDice[j]));
+			}
+		}		
+		return sheet;
 	}
 	/**
 	 * This method creates an array of various sizes and fills it with d6 roll values.
@@ -697,32 +704,6 @@ public class PlayerCreator {
 			diceRolls[i] = smallerNumber;
 			}
 		return (diceRolls[diceRolls.length-1]+diceRolls[diceRolls.length-2]+diceRolls[diceRolls.length-3]);
-	}
-	/**
-	 * This method gives an array of the values of each of the character's attributes, the sum of the top three rolls. No longer in use, but might be useful.
-	 * @param abilityDice, the array containing the amount of dice to be rolled per attribute.
-	 * @return array of all the abilities.
-	 */
-	public static int[] allTheAbilities(int[] abilityDice){
-		int[] allTheAbilities = new int[abilityDice.length];
-		for(int i = 0; i < abilityDice.length; i++){
-			allTheAbilities[i] = abilityScore(diceRolls(abilityDice[i]));
-		}
-		return allTheAbilities;
-	}
-	/**
-	 * makes the ability spread sheet, 7 attributes 20 times.
-	 * @param abilityDice, the array containing the amount of dice to be rolled per attribute.
-	 * @return the 2d array of all the rolls.
-	 */
-	public static int[][] spreadSheet(int[] abilityDice){
-		int[][] sheet = new int[7][20];
-		for(int i = 0; i < 20; i++){
-			for(int j = 0; j < 7; j++){
-				sheet[j][i] = abilityScore(diceRolls(abilityDice[j]));
-			}
-		}		
-		return sheet;
 	}
 	/**
 	 * Takes in the users choice of stats, from the 20 columns.
@@ -761,58 +742,7 @@ public class PlayerCreator {
 		}
 		return chosenStats;
 	}
-	public static void println(String s){ //System.out.println shortcut
-		System.out.println(s);
-	}
-	public static void print(String s){//System.out.print shortcut
-		System.out.print(s);
-	}
-	public static void error(String s){//Same as println but with "Error: " before the message
-		System.out.println("Error: " + s);
-	}
-	
-	public static int[] removeDuplicates(int[] array){
-	    boolean[] range = new boolean[41]; //values must default to false
-	    int totalItems = 0;
-
-	    for( int i = 0; i < array.length; ++i ){
-	        if( range[array[i]] == false ){
-	            range[array[i]] = true;
-	            totalItems++;
-	        }
-	    }
-
-	    int[] sortedArray = new int[totalItems];
-	    int c = 0;
-	    for( int i = 0; i < range.length; ++i ){
-	        if( range[i] == true ){
-	            sortedArray[c++] = i;
-	        }
-	    }
-	    return sortedArray;
-	}
-	
-	public static int[] mergeArrays(int[] a, int[] b, int[] c){
-		
-		int[] weaponProfs = new int[a.length + b.length + c.length];
-		
-		for(int i = 0; i < a.length; i++){
-			weaponProfs[i] = a[i];
-		}
-		for(int i = 0; i < b.length; i++){
-			weaponProfs[i+a.length] = b[i];
-		}
-		for(int i = 0; i < c.length; i++){
-			weaponProfs[i+a.length+b.length] = c[i];
-		}
-		
-		int[] allowedWeapons;
-		allowedWeapons = removeDuplicates(weaponProfs);
-		
-		return allowedWeapons;
-	}
-	
-	public static int[] weaponProfX(int[] classes){
+	public static int[] weaponProfX(int[] classes){ //TODO Weapon Proficiency selection methods
 		
 		int[] a = new int[0];
 		int[] b = new int[0];
@@ -875,28 +805,64 @@ public class PlayerCreator {
 					c = monk;
 			}
 		}
-	
 		weaponProfs = mergeArrays(a,b,c);
-		
 		return weaponProfs;
+	}
+	public static int[] mergeArrays(int[] a, int[] b, int[] c){
+		
+		int[] weaponProfs = new int[a.length + b.length + c.length];
+		
+		for(int i = 0; i < a.length; i++){
+			weaponProfs[i] = a[i];
 		}
-	
-	public static void weaponChoices(int[] allowedWeapons){
+		for(int i = 0; i < b.length; i++){
+			weaponProfs[i+a.length] = b[i];
+		}
+		for(int i = 0; i < c.length; i++){
+			weaponProfs[i+a.length+b.length] = c[i];
+		}
+		
+		int[] allowedWeapons;
+		allowedWeapons = removeDuplicates(weaponProfs);
+		
+		return allowedWeapons;
+	}
+	public static int[] removeDuplicates(int[] array){
+	    boolean[] range = new boolean[41]; //values must default to false
+	    int totalItems = 0;
+
+	    for( int i = 0; i < array.length; ++i ){
+	        if( range[array[i]] == false ){
+	            range[array[i]] = true;
+	            totalItems++;
+	        }
+	    }
+	    int[] sortedArray = new int[totalItems];
+	    int c = 0;
+	    for( int i = 0; i < range.length; ++i ){
+	        if( range[i] == true ){
+	            sortedArray[c++] = i;
+	        }
+	    }
+	    return sortedArray;
+	}
+	public static int[] weaponChoices(int[] allowedWeapons, int[] classes){
+		int[] weapons;
 		if(classes[0] == 6 || classes[classes.length/2] == 6 || classes[classes.length-1] == 6)		
-			int[] weapons = new int[6];
+			weapons = new int[6];
 		else if(classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)		
-			int[] weapons = new int[5];
+			weapons = new int[5];
 		else if(classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5)		
-			int[] weapons = new int[4];
+			weapons = new int[4];
 		else if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || classes[classes.length-1] == 2
-				classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
-			int[] weapons = new int[3];
+				|| classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 || classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
+			weapons = new int[3];
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
-				classes[classes.length-1] == 4 classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 classes[0] == 11 || 
+				classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
 				classes[classes.length/2] == 11 || classes[classes.length-1] == 11)
-			int[] weapons = new int[2];
+			weapons = new int[2];
 		else
-			int[] weapons = new int[1];
+			weapons = new int[1];
 		
 		String[] list = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
 				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
@@ -907,5 +873,15 @@ public class PlayerCreator {
 		for(int i = 0; i < allowedWeapons.length; i++){
 			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
 		}
+		return weapons;
+	}
+	public static void println(String s){ //System.out.println shortcut
+		System.out.println(s);
+	}
+	public static void print(String s){//System.out.print shortcut
+		System.out.print(s);
+	}
+	public static void error(String s){//Same as println but with "Error: " before the message
+		System.out.println("Error: " + s);
 	}
 }
