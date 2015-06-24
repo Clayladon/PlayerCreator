@@ -909,6 +909,46 @@ public class PlayerCreator {
 		
 		return weapons;
 	}
+	/**
+	 * returns the index at which the number is found.
+	 * @param choice, the number the method searches for.
+	 * @param options, the array the method searches in.
+	 * @return the index at which the number is found.
+	 */
+	public static int isFound(int choice, int[] options){
+		
+		for(int i = 0; i < options.length; i++){
+			if(choice == options[i])
+				return i;
+		}
+		return -1;
+	}
+	/**
+	 * this method removes an unwanted number from an array.
+	 * @param unwanted, the unwanted number.
+	 * @param options, the array in which the unwanted number is hiding.
+	 * @return an array cleansed of all unpleasant entities.
+	 */
+	public static int[] remove(int unwanted, int[] options){
+		
+		int[] newArray = new int[options.length-1];
+		int index = 0;
+		for(int i = 0; i < options.length; i++){
+			if(unwanted == options[i]){
+				for(int j = 0; j< newArray.length; j++){
+					if(j == i){
+						newArray[j] = options[++index];
+						
+					}
+					else
+						newArray[j] = options[index];
+					index++;
+				}
+				return newArray;
+			}
+		}
+		return options;
+	}
 	public static void println(String s){ //System.out.println shortcut
 		System.out.println(s);
 	}
