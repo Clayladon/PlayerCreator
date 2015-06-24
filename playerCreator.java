@@ -14,7 +14,7 @@ public class PlayerCreator {
 		int[][] abilities = spreadSheet(abilityDice);
 		int[] stats = columnSelection(keyb, abilities);
 		int[] allowedWeapons = weaponProfX(classes);
-		int[] weapons = weaponChoices(allowedWeapons, classes);
+		int[] weapons = weaponChoices(keyb, allowedWeapons, classes);
 		
 		
 		
@@ -866,7 +866,7 @@ public class PlayerCreator {
 	    }
 	    return sortedArray;
 	}
-	public static int[] weaponChoices(int[] allowedWeapons, int[] classes){
+	public static int[] weaponChoices(Scanner keyb, int[] allowedWeapons, int[] classes){
 		int[] weapons;
 		if(classes[0] == 6 || classes[classes.length/2] == 6 || classes[classes.length-1] == 6)		
 			weapons = new int[6];
@@ -884,15 +884,28 @@ public class PlayerCreator {
 		else
 			weapons = new int[1];
 		
+		boolean flag6 = true;
 		String[] list = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
 				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
 				"Short Sword", "Bastard Sword", "Falchion Sword", "Kopache Sword", "2H Sword", "Battle Axe", "Caltrop",
 				"Garrot", "Knife", "Lance", "Lasso", "Man Catcher", "Morning Star", "Military Pick", "Sap", "Trident",
 				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
-		
-		for(int i = 0; i < allowedWeapons.length; i++){
+		for(int i = 0; i < allowedWeapons.length; i++)
 			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
+		
+		while(flag6){
+			for(int i=0; i<weapons.length; i++){
+				weapons[i] = keyb.nextInt();
+				keyb.next();
+			}
+			if(weapons.length == 1 && isRepeatedClasses(weapons) || weapons.length == 2 && isRepeatedClasses(weapons) ||  classes[0] == 12 && isRepeatedClasses(weapons) 
+					|| classes[classes.length/2] == 12 && isRepeatedClasses(weapons) || classes[classes.length-1] == 12 && isRepeatedClasses(weapons))
+				error("Non-Fighters may not choose multiples of the same type of weapon");
+			else
+				flag6 = false;
 		}
+		
+		
 		
 		return weapons;
 	}
