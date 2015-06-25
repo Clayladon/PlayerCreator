@@ -15,6 +15,7 @@ public class PlayerCreator {
 		int[] stats = columnSelection(keyb, abilities);
 		int[] allowedWeapons = weaponProfX(classes);
 		int[] weapons = weaponChoices(keyb, allowedWeapons, classes);
+		int deity = divineChoice(keyb, classes, alignment);
 		
 		
 		
@@ -735,7 +736,7 @@ public class PlayerCreator {
 			}
 			System.out.println();
 		}
-		println("Choose your column wisely, enter 1 for the first column, 2 for the 2nd, etc...");
+		println("Please enter chosen ability scores (by column):");
 		int chosenColumn = keyb.nextInt();
 		int[] chosenStats = new int[7];
 		for(int i = 0; i < 7; i++){
@@ -883,8 +884,9 @@ public class PlayerCreator {
 			weapons = new int[5];
 		else if(classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5)		
 			weapons = new int[4];
-		else if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || classes[classes.length-1] == 2
-				|| classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 || classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
+		else if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || 
+				classes[classes.length-1] == 2 || classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 || classes[0] == 12 || 
+				classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
 			weapons = new int[3];
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 				classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
@@ -901,6 +903,7 @@ public class PlayerCreator {
 				"Short Sword", "Bastard Sword", "Falchion Sword", "Kopache Sword", "2H Sword", "Battle Axe", "Caltrop",
 				"Garrot", "Knife", "Lance", "Lasso", "Man Catcher", "Morning Star", "Military Pick", "Sap", "Trident",
 				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
+		println("Please enter chosen weapons; if specialization is possible multiples of the same weapon will be taken as a specialization in that weapon");
 		for(int i = 0; i < allowedWeapons.length; i++)
 			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
 		//Error checking, lots of error checking.
@@ -914,20 +917,324 @@ public class PlayerCreator {
 					
 			}
 			if(weapons.length == 1 && isRepeatedClasses(weapons) || weapons.length == 2 && isRepeatedClasses(weapons) ||  classes[0] == 12 && isRepeatedClasses(weapons) 
-					|| classes[classes.length/2] == 12 && isRepeatedClasses(weapons) || classes[classes.length-1] == 12 && isRepeatedClasses(weapons))
-				error("Non-Fighters may not choose multiples of the same type of weapon");
+					|| classes[classes.length/2] == 12 && isRepeatedClasses(weapons) || classes[classes.length-1] == 12 && isRepeatedClasses(weapons) 
+					|| classes[0] == 1 && isRepeatedClasses(weapons) || classes[classes.length/2] == 1 && isRepeatedClasses(weapons) 
+					|| classes[classes.length-1] == 1 && isRepeatedClasses(weapons))
+				error("Non-Fighters and Cavaliers may not specialize in a weapon");
 			else if(flag7)
 				error("One of the chosen weapons is not in the list of allowable weapons.");
 			
 			else
 				flag6 = false;
 		}
-		for(int i = 0; i < weapons.length; i++)
-			println(weapons[i] + ".	" + list[weapons[i]-1]);
 		return weapons;
 	}
+	public static int divineChoice(Scanner keyb, int[] classes, int alignment){ //TODO Deity selection method
+		
+		int deity = 0;
+		boolean flag8 = true;
+		
+		String[] dList = {"Raven","Coyote","Hastseltsi (god of racing)","Hastsezini (fire god)","Heng (thunder spirit)","Hotoru (wind god)", "Shakak (winter spirit)",
+							"Snake-Man","Tobadzistsini (war spirit)",
+							
+							"Anu (god of the sky)","Anshar (god of darkness and the night)", "Druaga (ruler of the devil world)",
+							"Girru (god of fire)", "Ishtar (goddess of love and war)","Marduk (god of the city, wind, thunder, storms and rain)","Nergal (god of the underworld)",
+							"Ramman (god of storms and thunder)",
+							
+							"Dagda (dozen king)","Arawn (god of the dead)","Brigit (goddess of fire and poetry)","Diancecht (physician of the gods)",
+							"Dunatis (god of the mountains and peaks)", "Goibhnie (blacksmith of the gods)", "Lugh (god of generalities)", "Manannan Mac Lir (god of the sea)",
+							"Morrigan (goddess of war)", "Nuada (god of war)", "Oghma (god of knowledge)", "Silvanus (god of the forests and nature)",
+							
+							"Quetzalcoatl (god of the air)", "Camaxtli (god of fate)", "Camazotz (bat god)", "Chalchiuhtlicue (goddess of running water and love)",
+							"Huhueteotl (fire god)", "Huitzilopochtli (god of war)", "Itzamna (god of medicine)", "Mictlantecuhtli (god of death)", "Tezcatlipoca (sun god)",
+							"Tlaloc (rain god)", "Tlazolteotl (goddess of vice)", "Xochipilli (god of gambling and chance)",
+							
+							"Shang-ti (supreme god of the heavens, god of the sky and agriculture)", "Chao Kung Ming (demigod of war)", 
+							"Chih-Chiang Fyu-Ya (god of archers, punisher of the gods)", "Chih Sung-tzu (lord of rain)", "Chung Kuel (god of truth and testing)", 
+							"Fei Lien & Feng Po (counts of the wind)", "Huan-Ti (god of war)", "Kuan Yin (goddess of mercy and child bearing)", "Lei Kung (duke of thunder)", 
+							"Lu Yueh (god of epidemics)", "No Cha (demigod of thieves)", "Shan Hai Ching (god of wind and sea)", "Tou Mu (goddess of the north star)", 
+							"Wen Chung (minister of thunder)", "Yen-Wang-Yeh (judge of the dead)",
+							
+							"Ra (sun god)", "Anhur (god of war)", "Anubis (guardian of the dead)", "Apshai (god of insects)", "Bast (cat goddess)", "Bes (god of luck)", 
+							"Geb (god of the earth)", "Horus (son of Osiris)", "Isis (goddess of magic and fertility)", "Nephthis (goddess of wealth and protector of the dead)", 
+							"Osiris (god of nature and the dead)", "Ptah (creator of the universe)", "Seker (god of light)", "Set (god of evil and the night)", 
+							"Shu (god of the sky)", "Tefnut (goddess of storms and flowing water)", "Thoth (god of knowledge)",
+							
+							"Ahto (god of the seas and water)", "Kiputytto (goddess of sickness)", "Mielikki (goddess of nature)", "Loviatar (goddess of hurt)", 
+							"Hiisi (god of evil)", "Ilmatar (goddess of mothers)", "Surma (demigod of death)", "Tuonetar (goddess of the underworld)", 
+							"Tuoni (god of the underworld)", "Ukko (supreme god of the Kalevala)", "Untamo (god of sleep and dreams)",
+							
+							"Zeus (god of the air)", "Aphrodite (goddess of love, beauty and passion)", "Apollo (god of the sun, prophecy, music and archery)", "Ares (god of war)",
+							"Artemis (goddess of the hunt)", "Athena (goddess of wisdom and combat)", "Demeter (goddess of agriculture)", "Dionysus (god of wine)", 
+							"Hades (god of the underworld and death)", "Hecate (goddess of magic)", "Hephaestus (god of blacksmiths)", "Hera (goddess of marriage and intrigue)", 
+							"Hermes (god of thieves, liars, gamblers and arbitrators)", "Nike (goddess of victory)", "Pan (god of nature and wild passion)", 
+							"Poseidon (god of seas, ocean, streams and earthquakes)", "Prometheus (greater titan)", "Tyche (goddess of good fortune)",
+							
+							"Indra (god of the atmosphere, storms and rain)", "Agni (god of fire and lightning)", "Kali (black earth mother)", "Karttikeya (demigod of war)", 
+							"Lakshmi (goddess of fortune)", "Ratri (goddess of the night, thieves and robbers)", "Rudra (storm god, god of the dead)", "Surya (sun god)", 
+							"Tvashtri (demigod of artifice and science)", "Ushas (goddess of the dawn)", "Varuna (goddess of order & protector of oaths)", 
+							"Vishnu (god of mercy and light)", "Yama (demigod of death)",
+							
+							"Amaterasu Omikami (goddess of the sun)", "Ama-Tsu-Mara (god of blacksmiths)", "Daikoku (god of wealth and luck)", "Ebisu (god of luck through hardwork)",
+							"Hachiman (war god)", "Kishijoten (goddess of luck)", "Oh-Kuni-Nushi (patron of heroes)", "Raiden (god of thunder and patron of fletchers)", 
+							"Susanowo (storm god and lord of the earth)", "Tsukiyomi (moon god)",
+							
+							"Aarth", "Death", "gods of Lankhmar", "gods of Trouble", "Hate", "Issek of the Jug", "Kos (god of dooms)", "Nehwon Earth god", "Rat god", "Red god", 
+							"Spider god", "Tyaa (winged goddess of evil birds)", "Votishal",
+							
+							"Hruggek (god of Bugbears)", "Skerrit (god of Centaurs)", "Moradin (god of Dwarves)", "Corelion Larethian (god of Elves)", 
+							"Deep Sashelas (god of Aquatic Elves)", "Lolth (god of Drow Elves)", "Rillifane Rallathil (god of Wood Elves)", "Surtur (god of Fire Giants)", 
+							"Thrym (god of Frost Giants)", "Grolantor (god of Hill Giants)", "Skoraeus Stonebones (god of Stone Giants)", "Yeenoghu (god of Gnolls)", 
+							"Garl Glittergold (god of Gnomes)", "Maglubiyet (god of Goblins)", "Yondalla (god of Halflings)", "Demogorgon (god of Ixitxachitl)", 
+							"Kurtulmak (god of Kobolds)", "Blibdoolpoolp (god of Kuo-Toa)", "Semuanya (god of Lizard Men)", "Eadro (god of Mermen)", "Vaprak (god of Ogres)", 
+							"Gruumsh (god of Orcs)", "Sekolah (god of Sahuagin)", "Laogzed (god of Troglodytes)",
+							
+							"Odin All Father (supreme ruler of the gods)", "Aegir (god of storms and the sea)", "Baldur (god of beauty and charisma)", 
+							"Bragi (god of poetry and eloquence and song)", "Forseti (god of justice)", "Frey (god of sunshine and the Elves)", 
+							"Freya (goddess of love and fertility)", "Frigga (goddess of the atmosphere)", "Heimdall (the bright god)", "Hel (goddess of death)", 
+							"Idun (goddess of spring and eternal youth)", "Loki (god of mischief strife and fire)", "Modi (god of courage and berserk rage)", "Norns (the fates)", 
+							"Sif (goddess of excellence and skill in battle)", "Thor (god of thunder)", "Tyr (god of war and law)", "Uller (god of hunting, archery and winter)", 
+							"Vidar (god of strength and silence)",
+							
+							"Enlil (air and war god)", "Enki (god of the rivers and ocean)", "Inanna (war goddess/goddess of love)", "Ki (goddess of nature)", "Nanna-Sin (moon god)",
+							"Nin-Hursag (goddess of the earth)", "Utu (sun god)",
+							
+							"Azura", "Boethiah", "Clavicus Vile", "Hermaeus Mora", "Hircine", "Jyggalag", "Malacath", "Mehrunes Dagon", "Meridia", "Molag Bal", "Mephala", 
+							"Nocturnal", "Nemira", "Peryite", "Sanguine", "Sheogorath", "Vaermina"};
+		
+		println("\nPlease enter chosen deity:");
+		for(int i=0; i<dList.length; i++){ //Must be modified to identify pantheons
+			println((i+1) + ". \t" + dList[i]);
+		}
+		
+		while(flag8){
+			deity = keyb.nextInt();
+		
+		
+			if(deity < 1 || deity > 205)
+				error("Invalid option chosen. Please choose between the designated choices.");
+			else if (deity == 1 && classes[0] == 3 && alignment != 7 || deity == 1 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 1 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 2 && classes[0] == 3 && alignment != 8 || deity == 2 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 2 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 3 && classes[0] == 3 && alignment != 5 || deity == 3 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 3 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 4 && classes[0] == 3 && alignment != 3 || deity == 4 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 4 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 5 && classes[0] == 3 && alignment != 1 || deity == 5 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 5 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 6 && classes[0] == 3 && alignment != 7 || deity == 6 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 6 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 7 && classes[0] == 3 && alignment != 9 || deity == 7 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 7 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 8 && classes[0] == 3 && alignment != 7 || deity == 8 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 8 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 9 && classes[0] == 3 && alignment != 6 || deity == 9 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 9 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 10 && classes[0] == 3 && alignment != 2 || deity == 10 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 10 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 11 && classes[0] == 3 && alignment != 9 || deity == 11 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 11 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 12 && classes[0] == 3 && alignment != 3 || deity == 12 && classes[classes.length/2] == 3 && alignment != 3|| 
+					deity == 12 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 13 && classes[0] == 3 && alignment != 1 || deity == 13 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 13 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 14 && classes[0] == 3 && alignment != 5 || deity == 14 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 14 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 15 && classes[0] == 3 && alignment != 2 || deity == 15 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 15 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 16 && classes[0] == 3 && alignment != 6 || deity == 16 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 16 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 17 && classes[0] == 3 && alignment != 5 || deity == 17 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 17 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 18 && classes[0] == 3 && alignment != 5 || deity == 18 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 18 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 19 && classes[0] == 3 && alignment != 3 || deity == 19 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 19 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 20 && classes[0] == 3 && alignment != 5 || deity == 20 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 20 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 21 && classes[0] == 3 && alignment != 1 || deity == 21 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 21 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 22 && classes[0] == 3 && alignment != 5 || deity == 22 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 22 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 23 && classes[0] == 3 && alignment != 5 || deity == 23 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 23 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 24 && classes[0] == 3 && alignment != 5 || deity == 24 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 24 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 25 && classes[0] == 3 && alignment != 8 || deity == 25 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 25 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 26 && classes[0] == 3 && alignment != 5 || deity == 26 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 26 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 27 && classes[0] == 3 && alignment != 5 || deity == 27 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 27 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 28 && classes[0] == 3 && alignment != 5 || deity == 28 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 28 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 29 && classes[0] == 3 && alignment != 5 || deity == 29 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 29 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 30 && classes[0] == 3 && alignment != 2 || deity == 30 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 30 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 31 && classes[0] == 3 && alignment != 5 || deity == 31 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 31 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 32 && classes[0] == 3 && alignment != 9 || deity == 32 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 32 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 33 && classes[0] == 3 && alignment != 7 || deity == 33 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 33 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 34 && classes[0] == 3 && alignment != 9 || deity == 34 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 34 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 35 && classes[0] == 3 && alignment != 5 || deity == 35 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 35 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 36 && classes[0] == 3 && alignment != 4 || deity == 36 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 36 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 37 && classes[0] == 3 && alignment != 3 || deity == 37 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 37 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 38 && classes[0] == 3 && alignment != 9 || deity == 38 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 38 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 39 && classes[0] == 3 && alignment != 3 || deity == 39 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 39 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 40 && classes[0] == 3 && alignment != 9 || deity == 40 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 40 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 41 && classes[0] == 3 && alignment != 5 || deity == 41 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 41 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 42 && classes[0] == 3 && alignment != 2 || deity == 42 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 42 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 43 && classes[0] == 3 && alignment != 4 || deity == 43 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 43 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 44 && classes[0] == 3 && alignment != 9 || deity == 44 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 44 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 45 && classes[0] == 3 && alignment != 5 || deity == 45 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 45 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 46 && classes[0] == 3 && alignment != 1 || deity == 46 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 46 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 47 && classes[0] == 3 && alignment != 4 || deity == 47 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 47 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 48 && classes[0] == 3 && alignment != 7 || deity == 48 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 48 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 49 && classes[0] == 3 && alignment != 1 || deity == 49 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 49 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 50 && classes[0] == 3 && alignment != 3 || deity == 50 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 50 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 51 && classes[0] == 3 && alignment != 9 || deity == 51 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 51 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 52 && classes[0] == 3 && alignment != 6 || deity == 52 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 52 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 53 && classes[0] == 3 && alignment != 2 || deity == 53 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 53 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 54 && classes[0] == 3 && alignment != 9 || deity == 54 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 54 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 55 && classes[0] == 3 && alignment != 8 || deity == 55 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 55 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 56 && classes[0] == 3 && alignment != 5 || deity == 56 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 56 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 57 && classes[0] == 3 && alignment != 4 || deity == 57 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 57 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 58 && classes[0] == 3 && alignment != 1 || deity == 58 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 58 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 59 && classes[0] == 3 && alignment != 1 || deity == 59 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 59 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 60 && classes[0] == 3 && alignment != 5 || deity == 60 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 60 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 61 && classes[0] == 3 && alignment != 7 || deity == 61 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 61 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 62 && classes[0] == 3 && alignment != 5 || deity == 62 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 62 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 63 && classes[0] == 3 && alignment != 5 || deity == 63 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 63 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 64 && classes[0] == 3 && alignment != 2 || deity == 64 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 64 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 65 && classes[0] == 3 && alignment != 4 || deity == 65 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 65 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 66 && classes[0] == 3 && alignment != 7 || deity == 66 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 66 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 67 && classes[0] == 3 && alignment != 1 || deity == 67 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 67 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 68 && classes[0] == 3 && alignment != 2 || deity == 68 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 68 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 69 && classes[0] == 3 && alignment != 4 || deity == 69 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 69 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 70 && classes[0] == 3 && alignment != 3 || deity == 70 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 70 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			
+			
+			
+			
+			else
+				flag8 = false;
+		}
+		return deity;
+	}
+
 	/**
-	 * returns the index at which the number is found.
+	 * returns the index at which the number is found in an array.
 	 * @param choice, the number the method searches for.
 	 * @param options, the array the method searches in.
 	 * @return the index at which the number is found.
@@ -965,68 +1272,7 @@ public class PlayerCreator {
 			}
 		}
 		return options;
-	}
-	public static String divineChoice(int alignment, int[] classes){
-		
-		String[] Dlist = {"Raven","Coyote","Hastseltsi (God of Racing)","Hastsezini (Fire God)","Heng (Thunder Spirit)","Hotoru (Wind God)", "Shakak (Winter Spirit)",
-							"Snake-Man","Tobadzistsini (War Spirit)",
-							
-							"Anu (God of the Sky)","Anshar (God of Darkness and the Night)", "Druaga (Ruler of the Devil World)",
-							"Girru (God of Fire)", "Ishtar (Goddess of Love and War)","Marduk (God of the City, Wind, Thunder,Storms and Rain)","Nergal (God of the Underworld)",
-							"Ramman (God of Storms and Thunder)",
-							
-							"Dagda (Dozen King)","Arawn (God of the Dead)","Brigit (Goddess of Fire and Poetry)","Diancecht (Physician of the Gods)",
-							"Dunatis (God of the Mountains and Peaks)", "Goibhnie (Blacksmith of the Gods)", "Lugh (God of Generalities)", "Manannan Mac Lir (God of the Sea)",
-							"Morrigan (Goddess of War)", "Nuada (God of War)", "Oghma (God of Knowledge)", "Silvanus (God of the Forests and Nature)",
-							
-							"Quetzalcoatl (God of the Air)", "Camaxtli (God of Fate)", "Camazotz (Bat God)", "Chalchiuhtlicue (Goddess of Running Water and Love)",
-							"Huhueteotl (Fire God)", "Huitzilopochtli (God of War)", "Itzamna (God of Medicine)", "Mictlantecuhtli (God of Death)", "Tezcatlipoca (Sun God)",
-							"Tlaloc (Rain God)", "Tlazolteotl (Goddess of Vice)", "Xochipilli (God of Gambling and Chance)",
-							
-							"Shang-ti (Supreme God of the Heavens, God of the Sky and Agriculture)", "Chao Kung Ming (Demigod of War)", "Chih-Chiang Fyu-Ya (God of Archers, Punisher of the Gods)",
-							"Chih Sung-tzu (Lord of Rain)", "Chung Kuel (God of Truth and Testing)", "Fei Lien & Feng Po (Counts of the Wind)", "Huan-Ti (God of War)",
-							"Kuan Yin (Goddess of Mercy and Child Bearing)", "Lei Kung (Duke of Thunder)", "Lu Yueh (God of Epidemics)", "No Cha (Demigod of Thieves)", 
-							"Chan Hai Ching (God of Wind and Sea)", "Tou Mu (Goddess of the North Star)", "Wen Chung (Minister of Thunder)", "Yen-Wang-Yeh (Judge of the Dead)",
-							
-							"Ra (Sun God)", "Anhur (God of War)", "Anubis (Guardian of the Dead)", "Apshai (God of Insects)", "Bast (Cat Goddess)", "Bes (God of Luck)", "Geb (God of the Earth)",
-							"Horus (Son of Osiris)", "Isis (Goddess of Magic and Fertility)", "Nephthis (Goddess of Wealth and Protector of the Dead)", "Osiris (God of Nature and the Dead)",
-							"Ptah (Creator of the Universe)", "Seker (God of Light)", "Set (God of Evil and the Night)", "Shu (God of the Sky)", "Tefnut (Goddess of Storms and Flowing Water)",
-							"Thoth (God of Knowledge)",
-							
-							"Ahto (God of the Seas and Water)", "Kiputytto (Goddess of Sickness)", "Mielikki (Goddess of Nature)", "Loviatar (Goddess of Hurt)", "Hiisi (God of Evil)",
-							"Ilmatar (Goddess of Mothers)", "Surma (Demigod of Death)", "Tuonetar (Goddess of the Underworld)", "Tuoni (God of the Underworld)", "Ukko (Supreme God of the Kalevala)",
-							"Untamo (God of Sleep and Dreams)",
-							
-							"Zeus (God of the Air)", "Aphrodite (Goddess of Love, Beauty and Passion)", "Apollo (God of the Sun, Prophecy, Music and Archery)", "Ares (God of War)",
-							"Artemis (Goddess of the Hunt)", "Athena (Goddess of Wisdom and Combat)", "Demeter (Goddess of Agriculture)", "Dionysus (God of Wine)", "Hades (God of the Underworld and Death)",
-							"Hecate (Goddess of Magic)", "Hephaestus (God of Blacksmiths)", "Hera (Goddess of Marriage and Intrigue)", "Hermes (God of Thieves, Liars, Gamblers and arbitrators)",
-							"Nike (Goddess of Victory)", "Pan (God of Nature and Wild Passion)", "Poseidon (God of Seas, Ocean, Streams and Earthquakes)", "Prometheus (Greater Titan)", "Tyche (Goddess of Good Fortune)",
-							
-							"Indra (God of the Atmosphere, Storms and Rain)", "Agni (God of Fire and Lightning)", "Kali (Black Earth Mother)", "Karttikeya (Demigod of War)", "Lakshmi (Goddess of Fortune)", 
-							"Ratri (Goddess of the Night, Thieves and Robbers)", "Rudra (Storm God, God of the Dead)", "Surya (Sun God)",  "Tvashtri (Demigod of Artifice and Science)", "Ushas (Goddess of the Dawn)",
-							"Varuna (Goddess of Order & Protector of Oaths)", "Vishnu (God of Mercy and Light)", "Yama (Demigod of Death)",
-							
-							"Amaterasu Omikami (Goddess of the Sun)", "Ama-Tsu-Mara (God of Blacksmiths)", "Daikoku (God of Wealth and Luck)", "Ebisu (God of Luck Through Hardwork)", "Hachiman (War God)", "Kishijoten (Goddess of Luck)",
-							"Oh-Kuni-Nushi (Patron of Heroes)", "Raiden (God of Thunder and Patron of Fletchers)", "Susanowo (Storm God and Lord of the Earth)", "Tsukiyomi (Moon God)",
-							
-							"Aarth", "Death", "Gods of Lankhmar", "Gods of Trouble", "Hate", "Issek of the Jug", "Kos (God of Dooms)", "Nehwon Earth God", "Rat God", "Red God", "Spider God", "Tyaa (Winged Goddess of Evil Birds)",
-							"Votishal",
-							
-							"Hruggek (God of Bugbears)", "Skerrit (God of Centaurs)", "Moradin (God of Dwarves)", "Corelion Larethian (God of Elves)", "Deep Sashelas (God of Aquatic Elves)", "Lolth (God of Drow Elves)",
-							"Rillifane Rallathil (God of Wood Elves)", "Surtur (God of Fire Giants)", "Thrym (God of Frost Giants)", "Grolantor (God of Hill Giants)", "Skoraeus Stonebones (God of Stone Giants)",
-							"Yeenoghu (God of Knolls)", "Garl Glittergold (God of Gnomes)", "Maglubiyet (God of Goblins)", "Yondalla (God of Halflings)", "DemoGorgon (God of the Ixitxachitl)", "Kurtulmak (God of Kobolds)",
-							"Blibdoolpoolp (God of Kuo-Toa)", "Semuanya (God of Lizard Men)", "Eadro (God of Mermen)", "Vaprak (God of Ogres)", "Gruumsh (God of Orcs)", "Sekolah (God of Sahuagin)", "Laogzed (God of Troglodytes)",
-							
-							"Odin Allfather (Supreme Ruler of the Gods)", "Aegir (God of Storms and the Sea)", "Baldur (God of Beauty and Charisma)", "Bragi (God of Poetry and Eloquence and Song)", "Forseti (God of Justice)",
-							"Frey (God of Sunshine and the Elves)", "Freya (Goddess of Love and Fertility)", "Frigga (Goddess of the Atmosphere)", "Heimdall (The Bright God)", "Hel (Goddess of Death)", "Idun (Goddess of Spring and Eternal Youth)",
-							"Loki (God of Mischief Strife and Fire)", "Modi (God of Courage and Berserk Rage)", "Norns (The Fates)", "Sif (Goddess of Excellence and Skill in Battle)", "Thor (God of Thunder)", "Tyr (God of War and Law)",
-							"Uller (God of Hunting, Archery and Winter)", "Vidar (God of Strength and Silence)",
-							
-							"Enlil (Air and War God)", "Enki (God of the Rivers and Ocean)", "Inanna (War Goddess/Goddess of Love)", "Ki (Goddess of Nature)", "Nanna-Sin (Moon God)", "Nin-Hursag (Goddess of the Earth)", "Utu (Sun God)",
-							
-							"Azura", "Boethiah", "Clavicus Vile", "Hermaeus Mora", "Hircine", "Jyggalag", "Malacath", "Mehrunes Dagon", "Meridia", "Molag Bal", "Mephala", "Nocturnal", "Nemira", "Peryite", "Sanguine", "Sheogorath", "Vaermina"};
-	}
-		
+	}	
 	public static void println(String s){ //System.out.println shortcut
 		System.out.println(s);
 	}
