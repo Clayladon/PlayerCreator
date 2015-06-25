@@ -866,8 +866,17 @@ public class PlayerCreator {
 	    }
 	    return sortedArray;
 	}
+	/**
+	 * This method used in main, prints out a list of all the allowable weapons. And then takes user input to fill the character`s starting weapons.
+	 * @param keyb scanner.
+	 * @param allowedWeapons, the list of allowable weapons.
+	 * @param classes, the array of the characters classes.
+	 * @return an integer array of the characters starting weapons.
+	 */
 	public static int[] weaponChoices(Scanner keyb, int[] allowedWeapons, int[] classes){
+		//weapons will be returned.
 		int[] weapons;
+		//Based off of the characters classes, we determine the characters inital number of weapons.
 		if(classes[0] == 6 || classes[classes.length/2] == 6 || classes[classes.length-1] == 6)		
 			weapons = new int[6];
 		else if(classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)		
@@ -884,7 +893,9 @@ public class PlayerCreator {
 		else
 			weapons = new int[1];
 		
+		//flag6 is the main flag for the while block, flag7 is used to determine the weapon chosen is in the list of allowable weapons.
 		boolean flag6 = true;
+		boolean flag7 = false;
 		String[] list = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
 				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
 				"Short Sword", "Bastard Sword", "Falchion Sword", "Kopache Sword", "2H Sword", "Battle Axe", "Caltrop",
@@ -892,21 +903,27 @@ public class PlayerCreator {
 				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
 		for(int i = 0; i < allowedWeapons.length; i++)
 			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
-		
+		//Error checking, lots of error checking.
 		while(flag6){
+			flag7 = false;
 			for(int i=0; i<weapons.length; i++){
 				weapons[i] = keyb.nextInt();
-				keyb.next();
+				keyb.nextLine();
+				if(isFound(weapons[i],allowedWeapons) < 0)
+					flag7 = true;
+					
 			}
 			if(weapons.length == 1 && isRepeatedClasses(weapons) || weapons.length == 2 && isRepeatedClasses(weapons) ||  classes[0] == 12 && isRepeatedClasses(weapons) 
 					|| classes[classes.length/2] == 12 && isRepeatedClasses(weapons) || classes[classes.length-1] == 12 && isRepeatedClasses(weapons))
 				error("Non-Fighters may not choose multiples of the same type of weapon");
+			else if(flag7)
+				error("One of the chosen weapons is not in the list of allowable weapons.");
+			
 			else
 				flag6 = false;
 		}
-		
-		
-		
+		for(int i = 0; i < weapons.length; i++)
+			println(weapons[i] + ".	" + list[weapons[i]-1]);
 		return weapons;
 	}
 	/**
@@ -949,6 +966,67 @@ public class PlayerCreator {
 		}
 		return options;
 	}
+	public static String divineChoice(int alignment, int[] classes){
+		
+		String[] Dlist = {"Raven","Coyote","Hastseltsi (God of Racing)","Hastsezini (Fire God)","Heng (Thunder Spirit)","Hotoru (Wind God)", "Shakak (Winter Spirit)",
+							"Snake-Man","Tobadzistsini (War Spirit)",
+							
+							"Anu (God of the Sky)","Anshar (God of Darkness and the Night)", "Druaga (Ruler of the Devil World)",
+							"Girru (God of Fire)", "Ishtar (Goddess of Love and War)","Marduk (God of the City, Wind, Thunder,Storms and Rain)","Nergal (God of the Underworld)",
+							"Ramman (God of Storms and Thunder)",
+							
+							"Dagda (Dozen King)","Arawn (God of the Dead)","Brigit (Goddess of Fire and Poetry)","Diancecht (Physician of the Gods)",
+							"Dunatis (God of the Mountains and Peaks)", "Goibhnie (Blacksmith of the Gods)", "Lugh (God of Generalities)", "Manannan Mac Lir (God of the Sea)",
+							"Morrigan (Goddess of War)", "Nuada (God of War)", "Oghma (God of Knowledge)", "Silvanus (God of the Forests and Nature)",
+							
+							"Quetzalcoatl (God of the Air)", "Camaxtli (God of Fate)", "Camazotz (Bat God)", "Chalchiuhtlicue (Goddess of Running Water and Love)",
+							"Huhueteotl (Fire God)", "Huitzilopochtli (God of War)", "Itzamna (God of Medicine)", "Mictlantecuhtli (God of Death)", "Tezcatlipoca (Sun God)",
+							"Tlaloc (Rain God)", "Tlazolteotl (Goddess of Vice)", "Xochipilli (God of Gambling and Chance)",
+							
+							"Shang-ti (Supreme God of the Heavens, God of the Sky and Agriculture)", "Chao Kung Ming (Demigod of War)", "Chih-Chiang Fyu-Ya (God of Archers, Punisher of the Gods)",
+							"Chih Sung-tzu (Lord of Rain)", "Chung Kuel (God of Truth and Testing)", "Fei Lien & Feng Po (Counts of the Wind)", "Huan-Ti (God of War)",
+							"Kuan Yin (Goddess of Mercy and Child Bearing)", "Lei Kung (Duke of Thunder)", "Lu Yueh (God of Epidemics)", "No Cha (Demigod of Thieves)", 
+							"Chan Hai Ching (God of Wind and Sea)", "Tou Mu (Goddess of the North Star)", "Wen Chung (Minister of Thunder)", "Yen-Wang-Yeh (Judge of the Dead)",
+							
+							"Ra (Sun God)", "Anhur (God of War)", "Anubis (Guardian of the Dead)", "Apshai (God of Insects)", "Bast (Cat Goddess)", "Bes (God of Luck)", "Geb (God of the Earth)",
+							"Horus (Son of Osiris)", "Isis (Goddess of Magic and Fertility)", "Nephthis (Goddess of Wealth and Protector of the Dead)", "Osiris (God of Nature and the Dead)",
+							"Ptah (Creator of the Universe)", "Seker (God of Light)", "Set (God of Evil and the Night)", "Shu (God of the Sky)", "Tefnut (Goddess of Storms and Flowing Water)",
+							"Thoth (God of Knowledge)",
+							
+							"Ahto (God of the Seas and Water)", "Kiputytto (Goddess of Sickness)", "Mielikki (Goddess of Nature)", "Loviatar (Goddess of Hurt)", "Hiisi (God of Evil)",
+							"Ilmatar (Goddess of Mothers)", "Surma (Demigod of Death)", "Tuonetar (Goddess of the Underworld)", "Tuoni (God of the Underworld)", "Ukko (Supreme God of the Kalevala)",
+							"Untamo (God of Sleep and Dreams)",
+							
+							"Zeus (God of the Air)", "Aphrodite (Goddess of Love, Beauty and Passion)", "Apollo (God of the Sun, Prophecy, Music and Archery)", "Ares (God of War)",
+							"Artemis (Goddess of the Hunt)", "Athena (Goddess of Wisdom and Combat)", "Demeter (Goddess of Agriculture)", "Dionysus (God of Wine)", "Hades (God of the Underworld and Death)",
+							"Hecate (Goddess of Magic)", "Hephaestus (God of Blacksmiths)", "Hera (Goddess of Marriage and Intrigue)", "Hermes (God of Thieves, Liars, Gamblers and arbitrators)",
+							"Nike (Goddess of Victory)", "Pan (God of Nature and Wild Passion)", "Poseidon (God of Seas, Ocean, Streams and Earthquakes)", "Prometheus (Greater Titan)", "Tyche (Goddess of Good Fortune)",
+							
+							"Indra (God of the Atmosphere, Storms and Rain)", "Agni (God of Fire and Lightning)", "Kali (Black Earth Mother)", "Karttikeya (Demigod of War)", "Lakshmi (Goddess of Fortune)", 
+							"Ratri (Goddess of the Night, Thieves and Robbers)", "Rudra (Storm God, God of the Dead)", "Surya (Sun God)",  "Tvashtri (Demigod of Artifice and Science)", "Ushas (Goddess of the Dawn)",
+							"Varuna (Goddess of Order & Protector of Oaths)", "Vishnu (God of Mercy and Light)", "Yama (Demigod of Death)",
+							
+							"Amaterasu Omikami (Goddess of the Sun)", "Ama-Tsu-Mara (God of Blacksmiths)", "Daikoku (God of Wealth and Luck)", "Ebisu (God of Luck Through Hardwork)", "Hachiman (War God)", "Kishijoten (Goddess of Luck)",
+							"Oh-Kuni-Nushi (Patron of Heroes)", "Raiden (God of Thunder and Patron of Fletchers)", "Susanowo (Storm God and Lord of the Earth)", "Tsukiyomi (Moon God)",
+							
+							"Aarth", "Death", "Gods of Lankhmar", "Gods of Trouble", "Hate", "Issek of the Jug", "Kos (God of Dooms)", "Nehwon Earth God", "Rat God", "Red God", "Spider God", "Tyaa (Winged Goddess of Evil Birds)",
+							"Votishal",
+							
+							"Hruggek (God of Bugbears)", "Skerrit (God of Centaurs)", "Moradin (God of Dwarves)", "Corelion Larethian (God of Elves)", "Deep Sashelas (God of Aquatic Elves)", "Lolth (God of Drow Elves)",
+							"Rillifane Rallathil (God of Wood Elves)", "Surtur (God of Fire Giants)", "Thrym (God of Frost Giants)", "Grolantor (God of Hill Giants)", "Skoraeus Stonebones (God of Stone Giants)",
+							"Yeenoghu (God of Knolls)", "Garl Glittergold (God of Gnomes)", "Maglubiyet (God of Goblins)", "Yondalla (God of Halflings)", "DemoGorgon (God of the Ixitxachitl)", "Kurtulmak (God of Kobolds)",
+							"Blibdoolpoolp (God of Kuo-Toa)", "Semuanya (God of Lizard Men)", "Eadro (God of Mermen)", "Vaprak (God of Ogres)", "Gruumsh (God of Orcs)", "Sekolah (God of Sahuagin)", "Laogzed (God of Troglodytes)",
+							
+							"Odin Allfather (Supreme Ruler of the Gods)", "Aegir (God of Storms and the Sea)", "Baldur (God of Beauty and Charisma)", "Bragi (God of Poetry and Eloquence and Song)", "Forseti (God of Justice)",
+							"Frey (God of Sunshine and the Elves)", "Freya (Goddess of Love and Fertility)", "Frigga (Goddess of the Atmosphere)", "Heimdall (The Bright God)", "Hel (Goddess of Death)", "Idun (Goddess of Spring and Eternal Youth)",
+							"Loki (God of Mischief Strife and Fire)", "Modi (God of Courage and Berserk Rage)", "Norns (The Fates)", "Sif (Goddess of Excellence and Skill in Battle)", "Thor (God of Thunder)", "Tyr (God of War and Law)",
+							"Uller (God of Hunting, Archery and Winter)", "Vidar (God of Strength and Silence)",
+							
+							"Enlil (Air and War God)", "Enki (God of the Rivers and Ocean)", "Inanna (War Goddess/Goddess of Love)", "Ki (Goddess of Nature)", "Nanna-Sin (Moon God)", "Nin-Hursag (Goddess of the Earth)", "Utu (Sun God)",
+							
+							"Azura", "Boethiah", "Clavicus Vile", "Hermaeus Mora", "Hircine", "Jyggalag", "Malacath", "Mehrunes Dagon", "Meridia", "Molag Bal", "Mephala", "Nocturnal", "Nemira", "Peryite", "Sanguine", "Sheogorath", "Vaermina"};
+	}
+		
 	public static void println(String s){ //System.out.println shortcut
 		System.out.println(s);
 	}
