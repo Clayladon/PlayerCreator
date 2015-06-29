@@ -1223,6 +1223,411 @@ public class PlayerCreator {
 			else if (deity == 70 && classes[0] == 3 && alignment != 3 || deity == 70 && classes[classes.length/2] == 3 && alignment != 3 || 
 					deity == 70 && classes[classes.length-1] == 3 && alignment != 3)
 				error("Clerics must be the same alignment as their deity");
+			else if (deity == 71 && classes[0] == 3 && alignment != 1 || deity == 71 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 71 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 72 && classes[0] == 3 && alignment != 1 || deity == 72 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 72 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 73 && classes[0] == 3 && alignment != 5 || deity == 73 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 73 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 74 && classes[0] == 3 && alignment != 4 || deity == 74 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 74 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 75 && classes[0] == 3 && alignment != 9 || deity == 75 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 75 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 76 && classes[0] == 3 && alignment != 4 || deity == 76 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 76 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 77 && classes[0] == 3 && alignment != 3 || deity == 77 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 77 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 78 && classes[0] == 3 && alignment != 9 || deity == 78 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 78 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 79 && classes[0] == 3 && alignment != 1 || deity == 79 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 79 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 80 && classes[0] == 3 && alignment != 6 || deity == 80 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 80 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 81 && classes[0] == 3 && alignment != 9 || deity == 81 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 81 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 82 && classes[0] == 3 && alignment != 8 || deity == 82 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 82 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 83 && classes[0] == 3 && alignment != 1 || deity == 83 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 83 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 84 && classes[0] == 3 && alignment != 5 || deity == 84 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 84 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 85 && classes[0] == 3 && alignment != 7 || deity == 85 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 85 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 86 && classes[0] == 3 && alignment != 7 || deity == 86 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 86 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 87 && classes[0] == 3 && alignment != 7 || deity == 87 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 87 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 88 && classes[0] == 3 && alignment != 9 || deity == 88 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 88 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 89 && classes[0] == 3 && alignment != 5 || deity == 89 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 89 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 90 && classes[0] == 3 && alignment != 1 || deity == 90 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 90 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 91 && classes[0] == 3 && alignment != 4 || deity == 91 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 91 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 92 && classes[0] == 3 && alignment != 8 || deity == 92 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 92 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 93 && classes[0] == 3 && alignment != 6 || deity == 93 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 93 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 94 && classes[0] == 3 && alignment != 3 || deity == 94 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 94 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 95 && classes[0] == 3 && alignment != 5 || deity == 95 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 95 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 96 && classes[0] == 3 && alignment != 5 || deity == 96 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 96 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 97 && classes[0] == 3 && alignment != 5 || deity == 97 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 97 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 98 && classes[0] == 3 && alignment != 2 || deity == 98 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 98 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 99 && classes[0] == 3 && alignment != 8 || deity == 99 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 99 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 100 && classes[0] == 3 && alignment != 8 || deity == 100 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 100 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 101 && classes[0] == 3 && alignment != 4 || deity == 101 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 101 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 102 && classes[0] == 3 && alignment != 5 || deity == 102 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 102 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 103 && classes[0] == 3 && alignment != 8 || deity == 103 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 103 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 104 && classes[0] == 3 && alignment != 8 || deity == 104 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 104 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 105 && classes[0] == 3 && alignment != 9 || deity == 105 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 105 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 106 && classes[0] == 3 && alignment != 7 || deity == 106 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 106 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 107 && classes[0] == 3 && alignment != 7 || deity == 107 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 107 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 108 && classes[0] == 3 && alignment != 6 || deity == 108 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 108 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 109 && classes[0] == 3 && alignment != 2 || deity == 109 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 109 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 110 && classes[0] == 3 && alignment != 1 || deity == 110 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 110 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 111 && classes[0] == 3 && alignment != 5 || deity == 111 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 111 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 112 && classes[0] == 3 && alignment != 4 || deity == 112 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 112 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 113 && classes[0] == 3 && alignment != 2 || deity == 113 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 113 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 114 && classes[0] == 3 && alignment != 1 || deity == 114 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 114 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 115 && classes[0] == 3 && alignment != 2 || deity == 115 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 115 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 116 && classes[0] == 3 && alignment != 1 || deity == 116 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 116 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 117 && classes[0] == 3 && alignment != 5 || deity == 117 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 117 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 118 && classes[0] == 3 && alignment != 1 || deity == 118 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 118 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 119 && classes[0] == 3 && alignment != 1 || deity == 119 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 119 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 120 && classes[0] == 3 && alignment != 7 || deity == 120 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 120 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 121 && classes[0] == 3 && alignment != 4 || deity == 121 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 121 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 122 && classes[0] == 3 && alignment != 7 || deity == 122 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 122 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 123 && classes[0] == 3 && alignment != 5 || deity == 123 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 123 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 124 && classes[0] == 3 && alignment != 8 || deity == 124 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 124 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 125 && classes[0] == 3 && alignment != 4 || deity == 125 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 125 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 126 && classes[0] == 3 && alignment != 2 || deity == 126 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 126 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 127 && classes[0] == 3 && alignment != 5 || deity == 127 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 127 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 128 && classes[0] == 3 && alignment != 6 || deity == 128 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 128 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 129 && classes[0] == 3 && alignment != 9 || deity == 129 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 129 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 130 && classes[0] == 3 && alignment != 9 || deity == 130 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 130 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 131 && classes[0] == 3 && alignment != 1 || deity == 131 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 131 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 132 && classes[0] == 3 && alignment != 5 || deity == 132 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 132 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 133 && classes[0] == 3 && alignment != 9 || deity == 133 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 133 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 134 && classes[0] == 3 && alignment != 9 || deity == 134 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 134 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 135 && classes[0] == 3 && alignment != 5 || deity == 135 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 135 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 136 && classes[0] == 3 && alignment != 9 || deity == 136 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 136 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 137 && classes[0] == 3 && alignment != 9 || deity == 137 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 137 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 138 && classes[0] == 3 && alignment != 1 || deity == 138 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 138 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 139 && classes[0] == 3 && alignment != 9 || deity == 139 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 139 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 140 && classes[0] == 3 && alignment != 5 || deity == 140 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 140 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 141 && classes[0] == 3 && alignment != 1 || deity == 141 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 141 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 142 && classes[0] == 3 && alignment != 7 || deity == 142 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 142 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 143 && classes[0] == 3 && alignment != 7 || deity == 143 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 143 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 144 && classes[0] == 3 && alignment != 9 || deity == 144 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 144 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 145 && classes[0] == 3 && alignment != 7 || deity == 145 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 145 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 146 && classes[0] == 3 && alignment != 3 || deity == 146 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 146 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 147 && classes[0] == 3 && alignment != 9 || deity == 147 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 147 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 148 && classes[0] == 3 && alignment != 9 || deity == 148 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 148 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 149 && classes[0] == 3 && alignment != 5 || deity == 149 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 149 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 150 && classes[0] == 3 && alignment != 9 || deity == 150 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 150 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 151 && classes[0] == 3 && alignment != 1 || deity == 151 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 151 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 152 && classes[0] == 3 && alignment != 3 || deity == 152 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 152 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 153 && classes[0] == 3 && alignment != 1 || deity == 153 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 153 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 154 && classes[0] == 3 && alignment != 9 || deity == 154 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 154 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 155 && classes[0] == 3 && alignment != 3 || deity == 155 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 155 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 156 && classes[0] == 3 && alignment != 6 || deity == 156 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 156 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 157 && classes[0] == 3 && alignment != 5 || deity == 157 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 157 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 158 && classes[0] == 3 && alignment != 5 || deity == 158 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 158 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 159 && classes[0] == 3 && alignment != 9 || deity == 159 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 159 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 160 && classes[0] == 3 && alignment != 3 || deity == 160 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 160 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 161 && classes[0] == 3 && alignment != 3 || deity == 161 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 161 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 162 && classes[0] == 3 && alignment != 9 || deity == 162 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 162 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 163 && classes[0] == 3 && alignment != 4 || deity == 163 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 163 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 164 && classes[0] == 3 && alignment != 8 || deity == 164 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 164 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 165 && classes[0] == 3 && alignment != 4 || deity == 165 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 165 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 166 && classes[0] == 3 && alignment != 4 || deity == 166 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 166 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 167 && classes[0] == 3 && alignment != 1 || deity == 167 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 167 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 168 && classes[0] == 3 && alignment != 4 || deity == 168 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 168 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 169 && classes[0] == 3 && alignment != 4 || deity == 169 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 169 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 170 && classes[0] == 3 && alignment != 2 || deity == 170 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 170 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 171 && classes[0] == 3 && alignment != 1 || deity == 171 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 171 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 172 && classes[0] == 3 && alignment != 6 || deity == 172 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 172 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 173 && classes[0] == 3 && alignment != 7 || deity == 173 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 173 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 174 && classes[0] == 3 && alignment != 9 || deity == 174 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 174 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 175 && classes[0] == 3 && alignment != 7 || deity == 175 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 175 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 176 && classes[0] == 3 && alignment != 5 || deity == 176 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 176 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 177 && classes[0] == 3 && alignment != 7 || deity == 177 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 177 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 178 && classes[0] == 3 && alignment != 7 || deity == 178 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 178 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 179 && classes[0] == 3 && alignment != 1 || deity == 179 && classes[classes.length/2] == 3 && alignment != 1 || 
+					deity == 179 && classes[classes.length-1] == 3 && alignment != 1)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 180 && classes[0] == 3 && alignment != 7 || deity == 180 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 180 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 181 && classes[0] == 3 && alignment != 7 || deity == 181 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 181 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 182 && classes[0] == 3 && alignment != 4 || deity == 182 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 182 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 183 && classes[0] == 3 && alignment != 2 || deity == 183 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 183 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 184 && classes[0] == 3 && alignment != 3 || deity == 184 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 184 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 185 && classes[0] == 3 && alignment != 5 || deity == 185 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 185 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 186 && classes[0] == 3 && alignment != 7 || deity == 186 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 186 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 187 && classes[0] == 3 && alignment != 5 || deity == 187 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 187 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 188 && classes[0] == 3 && alignment != 7 || deity == 188 && classes[classes.length/2] == 3 && alignment != 7 || 
+					deity == 188 && classes[classes.length-1] == 3 && alignment != 7)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 189 && classes[0] == 3 && alignment != 4 || deity == 189 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 189 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 190 && classes[0] == 3 && alignment != 9 || deity == 190 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 190 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 191 && classes[0] == 3 && alignment != 9 || deity == 191 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 191 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 192 && classes[0] == 3 && alignment != 5 || deity == 192 && classes[classes.length/2] == 3 && alignment != 5 || 
+					deity == 192 && classes[classes.length-1] == 3 && alignment != 5)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 193 && classes[0] == 3 && alignment != 8 || deity == 193 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 193 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 194 && classes[0] == 3 && alignment != 2 || deity == 194 && classes[classes.length/2] == 3 && alignment != 2 || 
+					deity == 194 && classes[classes.length-1] == 3 && alignment != 2)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 195 && classes[0] == 3 && alignment != 9 || deity == 195 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 195 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 196 && classes[0] == 3 && alignment != 9 || deity == 196 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 196 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 197 && classes[0] == 3 && alignment != 4 || deity == 197 && classes[classes.length/2] == 3 && alignment != 4 || 
+					deity == 197 && classes[classes.length-1] == 3 && alignment != 4)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 198 && classes[0] == 3 && alignment != 3 || deity == 198 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 198 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 199 && classes[0] == 3 && alignment != 8 || deity == 199 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 199 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 200 && classes[0] == 3 && alignment != 8 || deity == 200 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 200 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 201 && classes[0] == 3 && alignment != 9 || deity == 201 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 201 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 202 && classes[0] == 3 && alignment != 6 || deity == 202 && classes[classes.length/2] == 3 && alignment != 6 || 
+					deity == 202 && classes[classes.length-1] == 3 && alignment != 6)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 203 && classes[0] == 3 && alignment != 9 || deity == 203 && classes[classes.length/2] == 3 && alignment != 9 || 
+					deity == 203 && classes[classes.length-1] == 3 && alignment != 9)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 204 && classes[0] == 3 && alignment != 8 || deity == 204 && classes[classes.length/2] == 3 && alignment != 8 || 
+					deity == 204 && classes[classes.length-1] == 3 && alignment != 8)
+				error("Clerics must be the same alignment as their deity");
+			else if (deity == 205 && classes[0] == 3 && alignment != 3 || deity == 205 && classes[classes.length/2] == 3 && alignment != 3 || 
+					deity == 205 && classes[classes.length-1] == 3 && alignment != 3)
+				error("Clerics must be the same alignment as their deity");
 			
 			
 			
