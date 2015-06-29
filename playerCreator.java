@@ -686,7 +686,8 @@ public class PlayerCreator {
 	public static int[] diceRolls(int numDice){
 		int[] rolls = new int[numDice];
 		for(int i = 0; i < rolls.length; i++){
-			rolls[i] = (int)(Math.random()*6)+1;
+			while(rolls[i]<=1)
+				rolls[i] = (int)(Math.random()*6)+1;
 		}
 		return rolls;
 	}
@@ -1004,7 +1005,38 @@ public class PlayerCreator {
 		
 		println("\nPlease enter chosen deity:");
 		for(int i=0; i<dList.length; i++){ //Must be modified to identify pantheons
-			println((i+1) + ". \t" + dList[i]);
+			if(i==0)
+				println("American Indian Pantheon:");
+			else if(i==10)
+				println("Babylonian Pantheon:");
+			else if(i==18)
+				println("Celtic Pantheon:");
+			else if(i==30)
+				println("Central American Pantheon:");
+			else if(i==42)
+				println("Chinese Pantheon:");
+			else if(i==57)
+				println("Egyptian Pantheon:");
+			else if(i==74)
+				println("Finnish Pantheon:");
+			else if(i==85)
+				println("Greek Pantheon:");
+			else if(i==103)
+				println("Indian Pantheon:");
+			else if(i==116)
+				println("Japanese Pantheon:");
+			else if(i==126)
+				println("Nehwon Pantheon:");
+			else if(i==139)
+				println("Nonhuman Pantheon:");
+			else if(i==163)
+				println("Norse Pantheon:");
+			else if(i==182)
+				println("Sumerian Pantheon:");
+			else if(i==189)
+				println("Daedric Pantheon:");
+			
+			println("\t" + (i+1) + ". \t" + dList[i]);
 		}
 		
 		while(flag8){
