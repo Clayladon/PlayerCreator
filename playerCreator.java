@@ -1,21 +1,23 @@
 package playerCreator;
 
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class PlayerCreator {
 	public static void main(String[] args) {
 		Scanner keyb = new Scanner(System.in); //Initialize scanner for user input
-		int race = raceSelection(keyb); //Collect important information from user
+		String race = raceSelection(keyb); //Collect important information from user
 		int gender = genderSelection(keyb);
 		int numClasses = numClassesSelection(keyb, race);
-		int[] classes = classesSelection(keyb, race, numClasses);
-		int alignment = alignmentSelection(keyb, classes);
+		String[] classes = classesSelection(keyb, race, numClasses);
+		String alignment = alignmentSelection(keyb, classes);
 		int[] abilityDice = abilityDiceSelection(classes);
 		int[][] abilities = spreadSheet(abilityDice);
 		int[] stats = columnSelection(keyb, abilities);
-		int[] allowedWeapons = weaponProfX(classes);
-		int[] weapons = weaponChoices(keyb, allowedWeapons, classes);
-		int deity = divineChoice(keyb, classes, alignment);
+		String[] allowedWeapons = weaponProfX(classes);
+		String[] weapons = weaponChoices(keyb, allowedWeapons, classes);
+		String deity = divineChoice(keyb, classes, alignment);
 		
 		
 		
@@ -29,20 +31,23 @@ public class PlayerCreator {
 	 * @param keyb keyboard scanner used for user input
 	 * @return integer representing the desired race
 	 */
-	public static int raceSelection(Scanner keyb){ //TODO Race selection method
+	public static String raceSelection(Scanner keyb){ //TODO Race selection method
 		int race = 0; 
 		boolean flag1 = true;
+		String[] raceList = {"Barbarian","Human","Grey Elf","High Elf","Wild Elf","Drow Elf","Valley Elf","Wood Elf","Hill Dwarf","Mountain Dwarf","Grey Dwarf","Deep Gnome",
+								"Surface Gnome","Half-Elf","Halfling","Half-Orc"};
+		
+		for(int i=0; i<raceList.length; i++){
+			println("\t" + (i+1) + ". \t" + raceList[i]);
+		}
 		while(flag1){
-			println("Please enter chosen race: \nBarbarian = 1 \nHuman = 2 \nGrey Elf = 3 \nHigh Elf = 4 \nWild Elf = 5 \nDrow Elf = 6 "
-					+ "\nValley Elf = 7 \nWood Elf = 8 \nHill Dwarf = 9 \nMountain Dwarf = 10 \nGrey Dwarf = 11 \nDeep Gnome = 12 \nSurface Gnome = 13 \nHalf-Elf"
-					+ " = 14 \nHalfling = 15 \nHalf-Orc = 16");
 			race = keyb.nextInt(); 
 			keyb.nextLine();
 			if(race > 0 && race < 17){
 				flag1 = false;
 			}
 		}
-		return race;
+		return raceList[race-1];
 	}
 	/**
 	 * Used in main to determine the gender chosen by the user
@@ -68,7 +73,7 @@ public class PlayerCreator {
 	 * @param race integer representing the race chosen
 	 * @return integer representing the number of desired classes
 	 */
-	public static int numClassesSelection(Scanner keyb, int race){ //TODO Number of classes method
+	public static int numClassesSelection(Scanner keyb, String race){ //TODO Number of classes method
 
 		int numClasses = 0;
 		boolean flag3 = true;
@@ -79,11 +84,11 @@ public class PlayerCreator {
 			
 			if(numClasses < 1 || numClasses >3) 
 				error("Incorrect number of classes.");
-			else if(race==2 && numClasses>1)
+			else if(race.equals("Human") && numClasses>1)
 				error("Players that are Human can only be single class.");
-			else if(race==1 && numClasses>1)
+			else if(race.equals("Barbarian") && numClasses>1)
 				error("Players that are Barbarian can only be single class.");
-			else if(race>2 && numClasses <2){
+			else if(!(race.equals("Human") || race.equals("Barbarian")) && numClasses <2){
 				error("Warning! Single classed characters should be human to avoid level cap limitations. Do you wish to proceed with non-human choice?(y/n)");
 					if(keyb.next().equalsIgnoreCase("y")){
 						flag3 = false;
@@ -109,7 +114,43 @@ public class PlayerCreator {
 	 * @param numClasses integer representing the number of desired classes
 	 * @return integer array representing the classes the user has chosen
 	 */
-	public static int[] classesSelection(Scanner keyb, int race, int numClasses){ //TODO Class selection method
+	public static String[] classesSelection(Scanner keyb, String raceString, int numClasses){ //TODO Class selection method
+		
+		int race = 0;
+		if(raceString.equalsIgnoreCase("Barbarian"))
+			race = 1;
+		else if(raceString.equalsIgnoreCase("Human"))
+			race = 2;
+		else if(raceString.equalsIgnoreCase("Grey Elf"))
+			race = 3;
+		else if(raceString.equalsIgnoreCase("High Elf"))
+			race = 4;
+		else if(raceString.equalsIgnoreCase("Wild Elf"))
+			race = 5;
+		else if(raceString.equalsIgnoreCase("Drow Elf"))
+			race = 6;
+		else if(raceString.equalsIgnoreCase("Valley Elf"))
+			race = 7;
+		else if(raceString.equalsIgnoreCase("Wood Elf"))
+			race = 8;
+		else if(raceString.equalsIgnoreCase("Hill Dwarf"))
+			race = 9;
+		else if(raceString.equalsIgnoreCase("Mountain Dwarf"))
+			race = 10;
+		else if(raceString.equalsIgnoreCase("Grey Dwarf"))
+			race = 11;
+		else if(raceString.equalsIgnoreCase("Deep Gnome"))
+			race = 12;
+		else if(raceString.equalsIgnoreCase("Surface Gnome"))
+			race = 13;
+		else if(raceString.equalsIgnoreCase("Half-Elf"))
+			race = 14;
+		else if(raceString.equalsIgnoreCase("Halfling"))
+			race = 15;
+		else if(raceString.equalsIgnoreCase("Half-Orc"))
+			race = 16;
+		
+
 		int[] classes = new int[numClasses];
 		boolean flag4 = true;
 		while(flag4){
@@ -426,7 +467,7 @@ public class PlayerCreator {
 	 * @param classes the integer array of classes chosen
 	 * @return integer representing which alignment the user has chosen
 	 */
-	public static int alignmentSelection(Scanner keyb, int[] classes){ //TODO Alignment selection method
+	public static String alignmentSelection(Scanner keyb, int[] classes){ //TODO Alignment selection method
 		int align = 0;
 		boolean flag5 = true;
 		while(flag5){
@@ -545,7 +586,8 @@ public class PlayerCreator {
 			else
 				flag5 = false;
 		}
-		return align;
+		String[] aList = {"Lawful Good", "Lawful Neutral", "Lawful Evil", "Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil"};
+		return aList[align-1];
 	}
 	/**
 	 * Used in main to determine how many dice the character is to roll to determine ability scores
@@ -750,18 +792,21 @@ public class PlayerCreator {
 	 * @param classes, an array representing the chosen classes of the character.
 	 * @return the list of allowable weapons.
 	 */
-	public static int[] weaponProfX(int[] classes){ //TODO Weapon Proficiency selection methods
+	public static String[] weaponProfX(int[] classes){ //TODO Weapon Proficiency selection methods
 		
-		int[] a = new int[0];
-		int[] b = new int[0];
-		int[] c = new int[0];
-		int[] cleric = {2,6,7,11,16};
-		int[] druid = {2,4,5,7,13,14,15,16};
-		int[] m_u = {4,5,16};
-		int[] thief = {2,4,5,14,17,18,19,33};
-		int[] monk = {1,2,3,4,8,9,10,12,15,16};
-		int[] fighter = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40};
-		int[] weaponProfs;
+		String[] a = new String[0];
+		String[] b = new String[0];
+		String[] c = new String[0];
+		String[] cleric = {"Club","Flail","Hammer","Mace","Staff"};
+		String[] druid = {"Club","Dagger","Dart","Hammer","Scimitar","Sling","Spear","Staff"};
+		String[] m_u = {"Dagger","Dart","Staff"};
+		String[] thief = {"Club","Dagger","Dart","Sling","Broad Sword","Long Sword","Short Sword","Sap"};
+		String[] monk = {"Bo Stick","Club","Crossbow","Dagger","Hand Axe","Javelin","Jo Stick","Pole Arm","Spear","Staff"};
+		String[] fighter = {"Bo Stick", "Club", "Crossbow", "Dagger", "Dart", "Flail", "Hammer", "Hand Axe", "Javelin", 
+				"Jo Stick", "Mace", "Pole Arm", "Scimitar", "Sling", "Spear", "Staff", "Broad Sword", "Long Sword",
+				"Short Sword", "Bastard Sword", "Falchion Sword", "Kopache Sword", "2H Sword", "Battle Axe", "Caltrop",
+				"Garrot", "Knife", "Lance", "Lasso", "Man Catcher", "Morning Star", "Military Pick", "Sap", "Trident",
+				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
 		
 		
 		for(int i = 0; i<classes.length; i++){
@@ -813,8 +858,7 @@ public class PlayerCreator {
 					c = monk;
 			}
 		}
-		weaponProfs = mergeArrays(a,b,c);
-		return weaponProfs;
+		return mergeArrays(a,b,c);
 	}
 	
 	/**
@@ -824,9 +868,9 @@ public class PlayerCreator {
 	 * @param c allowed weapons for 3rd class.
 	 * @return same return as weaponProfX.
 	 */
-	public static int[] mergeArrays(int[] a, int[] b, int[] c){
+	public static String[] mergeArrays(String[] a, String[] b, String[] c){
 		
-		int[] weaponProfs = new int[a.length + b.length + c.length];
+		String[] weaponProfs = new String[a.length + b.length + c.length];
 		
 		for(int i = 0; i < a.length; i++){
 			weaponProfs[i] = a[i];
@@ -837,36 +881,11 @@ public class PlayerCreator {
 		for(int i = 0; i < c.length; i++){
 			weaponProfs[i+a.length+b.length] = c[i];
 		}
-		
-		int[] allowedWeapons;
-		allowedWeapons = removeDuplicates(weaponProfs);
-		
-		return allowedWeapons;
-	}
-	
-	/**
-	 * Used in mergeArrays, this method removes duplicates and sorts the list of allowable weapons.
-	 * @param array, the merged array of the allowable weapons.
-	 * @return a sorted array of the allowable weapons without any duplicates.
-	 */
-	public static int[] removeDuplicates(int[] array){
-	    boolean[] range = new boolean[41]; //values must default to false
-	    int totalItems = 0;
 
-	    for( int i = 0; i < array.length; ++i ){
-	        if( range[array[i]] == false ){
-	            range[array[i]] = true;
-	            totalItems++;
-	        }
-	    }
-	    int[] sortedArray = new int[totalItems];
-	    int c = 0;
-	    for( int i = 0; i < range.length; ++i ){
-	        if( range[i] == true ){
-	            sortedArray[c++] = i;
-	        }
-	    }
-	    return sortedArray;
+	    weaponProfs = new HashSet<String>(Arrays.asList(weaponProfs)).toArray(new String[0]); //Removes duplicates
+	    Arrays.sort(weaponProfs); //Sorts the array
+		
+		return weaponProfs;
 	}
 	/**
 	 * This method used in main, prints out a list of all the allowable weapons. And then takes user input to fill the character`s starting weapons.
@@ -875,26 +894,26 @@ public class PlayerCreator {
 	 * @param classes, the array of the characters classes.
 	 * @return an integer array of the characters starting weapons.
 	 */
-	public static int[] weaponChoices(Scanner keyb, int[] allowedWeapons, int[] classes){
+	public static String[] weaponChoices(Scanner keyb, String[] allowedWeapons, int[] classes){
 		//weapons will be returned.
-		int[] weapons;
-		//Based off of the characters classes, we determine the characters inital number of weapons.
+		String[] weapons;
+		//Based off of the characters classes, we determine the characters initial number of weapons.
 		if(classes[0] == 6 || classes[classes.length/2] == 6 || classes[classes.length-1] == 6)		
-			weapons = new int[6];
+			weapons = new String[6];
 		else if(classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)		
-			weapons = new int[5];
+			weapons = new String[5];
 		else if(classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5)		
-			weapons = new int[4];
+			weapons = new String[4];
 		else if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || 
 				classes[classes.length-1] == 2 || classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7 || classes[0] == 12 || 
 				classes[classes.length/2] == 12 || classes[classes.length-1] == 12)
-			weapons = new int[3];
+			weapons = new String[3];
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 				classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
 				classes[classes.length/2] == 11 || classes[classes.length-1] == 11)
-			weapons = new int[2];
+			weapons = new String[2];
 		else
-			weapons = new int[1];
+			weapons = new String[1];
 		
 		//flag6 is the main flag for the while block, flag7 is used to determine the weapon chosen is in the list of allowable weapons.
 		boolean flag6 = true;
@@ -906,12 +925,12 @@ public class PlayerCreator {
 				"Whip", "Atlatl", "Blow Gun", "Long Bow", "Short Bow", "Hand Crossbow"};
 		println("Please enter chosen weapons; if specialization is possible multiples of the same weapon will be taken as a specialization in that weapon");
 		for(int i = 0; i < allowedWeapons.length; i++)
-			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i]-1]);
+			println(allowedWeapons[i] + ".	" + list[allowedWeapons[i-1]]);
 		//Error checking, lots of error checking.
 		while(flag6){
 			flag7 = false;
 			for(int i=0; i<weapons.length; i++){
-				weapons[i] = keyb.nextInt();
+				weapons[i] = list[keyb.nextInt()+1];
 				keyb.nextLine();
 				if(isFound(weapons[i],allowedWeapons) < 0)
 					flag7 = true;
@@ -930,8 +949,32 @@ public class PlayerCreator {
 		}
 		return weapons;
 	}
-	public static int divineChoice(Scanner keyb, int[] classes, int alignment){ //TODO Deity selection method
+	public static String divineChoice(Scanner keyb, int[] classes, String align){ //TODO Deity selection method
 		
+		int alignment = 0;
+		if(align.equalsIgnoreCase("Lawful Good"))
+			alignment = 1;
+		else if(align.equalsIgnoreCase("Lawful Neutral"))
+			alignment = 2;
+		else if(align.equalsIgnoreCase("Lawful Evil"))
+			alignment = 3;
+		else if(align.equalsIgnoreCase("Neutral Good"))
+			alignment = 4;
+		else if(align.equalsIgnoreCase("True Neutral"))
+			alignment = 5;
+		else if(align.equalsIgnoreCase("Neutral Evil"))
+			alignment = 6;
+		else if(align.equalsIgnoreCase("Chaotic Good"))
+			alignment = 7;
+		else if(align.equalsIgnoreCase("Chaotic Neutral"))
+			alignment = 8;
+		else if(align.equalsIgnoreCase("Chaotic Evil"))
+			alignment = 9;
+		
+		if(alignment == 0){
+			error("Alignment not corrected in method: divineChoice");
+			System.exit(0);
+		}
 		int deity = 0;
 		boolean flag8 = true;
 		
@@ -1667,11 +1710,11 @@ public class PlayerCreator {
 			else
 				flag8 = false;
 		}
-		return deity;
+		return dList[deity-1];
 	}
 
 	/**
-	 * returns the index at which the number is found in an array.
+	 * returns the index at which the number is found in an array of integers.
 	 * @param choice, the number the method searches for.
 	 * @param options, the array the method searches in.
 	 * @return the index at which the number is found.
@@ -1680,6 +1723,20 @@ public class PlayerCreator {
 		
 		for(int i = 0; i < options.length; i++){
 			if(choice == options[i])
+				return i;
+		}
+		return -1;
+	}
+	/**
+	 * returns the index at which the number is found in an array of Strings.
+	 * @param choice, the number the method searches for.
+	 * @param options, the array the method searches in.
+	 * @return the index at which the number is found.
+	 */
+	public static int isFound(String choice, String[] options){
+		
+		for(int i = 0; i < options.length; i++){
+			if(choice.equals(options[i]))
 				return i;
 		}
 		return -1;
