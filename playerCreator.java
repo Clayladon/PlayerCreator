@@ -16,11 +16,12 @@ public class PlayerCreator {
 		int[] allowedWeapons = weaponProfX(classes);
 		int[] weapons = weaponChoices(keyb, allowedWeapons, classes);
 		int deity = divineChoice(keyb, classes, alignment);
+		String name = nameSelection(keyb);
 		double secondarySkill = secondarySkillsCalculator();
 		int[] expNeeded = experienceNeededCalculator(classes);
 		int[] savingThrows = savingThrowCalculator(classes);
 		double[] stats = abilityScoreAdjustment(classes, chosenStats, race, gender);
-		//int[] baseBonuses = baseBonusesCalculator(stats);
+		int[] baseBonuses = baseBonusesCalculator(stats);
 		
 		
 		
@@ -1330,7 +1331,15 @@ public class PlayerCreator {
 				error("Clerics must be the same alignment as their deity");
 			else if (deity == 94 && classes[0] == 3 && alignment != 3 || deity == 94 && classes[classes.length/2] == 3 && alignment != 3 || 
 					deity == 94 && classes[classes.length-1] == 3 && alignment != 3)
-				error("Clerics must be the same alignment as their deity");
+				error("Clerics must be the same alignment as their deity"
+						/**
+						 * Used in main, this method modifies ability scores to correspond with race modifications, race max/min, gender max/min, and class modifications
+						 * @param classes, the integer array representing the classes of the character
+						 * @param chosenStats, the ability scores chosen by the user
+						 * @param race, the race of the character
+						 * @param gender, the gender of the character
+						 * @return integer array representing the final ability scores of the player character
+						 */);
 			else if (deity == 95 && classes[0] == 3 && alignment != 5 || deity == 95 && classes[classes.length/2] == 3 && alignment != 5 || 
 					deity == 95 && classes[classes.length-1] == 3 && alignment != 5)
 				error("Clerics must be the same alignment as their deity");
@@ -1672,6 +1681,24 @@ public class PlayerCreator {
 				flag8 = false;
 		}
 		return deity;
+	}
+	/**
+	 * Used in main to determine character's name
+	 * @param keyb Keyboard scanner
+	 * @return String representing character's name
+	 */
+	public static String nameSelection(Scanner keyb){ //TODO Name method
+		print("Please enter your character's name:");
+		String name = keyb.nextLine();
+		boolean flag9 = true;
+		
+		while(flag9){
+			println(name + " is your character's name. Are you sure?(y/n)");
+			if(keyb.next() != "y");
+			else
+				flag9 = false;
+		}
+		return name;
 	}
 	/**
 	 * Used in main, this method calculates the characters secondary skill as per the rules in the DMG p.12
@@ -2147,9 +2174,9 @@ public class PlayerCreator {
 		}
 		double[] stats = new double[7];
 		double strength = chosenStats[0];
-		if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || 
+		if(strength == 18 && (classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || 
 				classes[classes.length-1] == 2 || classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5 || classes[0] == 6 || 
-				classes[classes.length/2] == 6 || classes[classes.length-1] == 6 || classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7)
+				classes[classes.length/2] == 6 || classes[classes.length-1] == 6 || classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7))
 			strength += Math.random() + 0.01;
 		
 		stats[0] = strength;
@@ -2157,6 +2184,132 @@ public class PlayerCreator {
 			stats[i+1] = chosenStats[i+1];
 		
 		return stats;
+	}
+	/**
+	 * Used in main, this method determine's the characters base bonuses based off the characters ability scores
+	 * @param stats, the ability scores of the character
+	 * @return integer array representing the base bonuses of the character
+	 */
+	public static int[] baseBonusesCalculator(double[] stats){
+		int[] baseBonuses = new int[9];
+		
+		if(stats[0] < 16);  	//Strength bonuses
+		else if(stats[0] < 17){
+			baseBonuses[1] = 1;
+		}
+		else if(stats[0] < 18){
+			baseBonuses[0] = 1;
+			baseBonuses[1] = 1;
+		}
+		else if(stats[0] == 18){
+			baseBonuses[0] = 1;
+			baseBonuses[1] = 2;
+		}
+		else if(stats[0] < 18.51){
+			baseBonuses[0] = 1;
+			baseBonuses[1] = 3;
+		}
+		else if(stats[0] < 18.76){
+			baseBonuses[0] = 2;
+			baseBonuses[1] = 3;
+		}
+		else if(stats[0] < 18.91){
+			baseBonuses[0] = 2;
+			baseBonuses[1] = 4;
+		}
+		else if(stats[0] < 19){
+			baseBonuses[0] = 2;
+			baseBonuses[1] = 5;
+		}
+		else{ 
+			baseBonuses[0] = 3;
+			baseBonuses[1] = 6;
+		}
+		
+		if(stats[2] < 15);		//Magic adjustment (Wisdom)
+		else if(stats[2] == 15)
+			baseBonuses[2] = 1;
+		else if(stats[2] == 16)
+			baseBonuses[2] = 2;
+		else if(stats[2] == 17)
+			baseBonuses[2] = 3;
+		else if(stats[2] == 18)
+			baseBonuses[2] = 4;
+		else
+			baseBonuses[2] = 5;
+		
+		if(stats[3] < 15);		//Dexterity bonuses
+		else if(stats[3] == 15){
+			baseBonuses[4] = -1;
+		}
+		else if(stats[3] == 16){
+			baseBonuses[3] = 1;
+			baseBonuses[4] = -2;
+		}
+		else if(stats[3] == 17){
+			baseBonuses[3] = 2;
+			baseBonuses[4] = -3;
+		}
+		else{
+			baseBonuses[3] = 3;
+			baseBonuses[4] = -4;
+		}
+		
+		if(stats[4] < 15);		//Constitution bonus to hit points
+		else if(stats[4] == 15){
+			baseBonuses[5] = 1;
+			baseBonuses[6] = 1;
+		}
+		else if(stats[4] == 16){
+			baseBonuses[5] = 2;
+			baseBonuses[6] = 2;
+		}
+		else if(stats[4] == 17){
+			baseBonuses[5] = 2;
+			baseBonuses[6] = 3;
+		}
+		else if(stats[4] == 18){
+			baseBonuses[5] = 2;
+			baseBonuses[6] = 4;
+		}
+		else{
+			baseBonuses[5] = 2;
+			baseBonuses[6] = 5;
+		}
+		
+		if(stats[5] < 13);		//Reaction adjustment (Charisma)
+		else if(stats[5] == 13)
+			baseBonuses[7] = 5;
+		else if(stats[5] == 14)
+			baseBonuses[7] = 10;
+		else if(stats[5] == 15)
+			baseBonuses[7] = 15;
+		else if(stats[5] == 16)
+			baseBonuses[7] = 25;
+		else if(stats[5] == 17)
+			baseBonuses[7] = 30;
+		else if(stats[5] == 18)
+			baseBonuses[7] = 35;
+		else
+			baseBonuses[7] = 40;
+		
+		if(stats[6] < 14);		//Reaction adjustment (Comeliness)
+		else if(stats[6] == 14)
+			baseBonuses[8] = 14;
+		else if(stats[6] == 15)
+			baseBonuses[8] = 15;
+		else if(stats[6] == 16)
+			baseBonuses[8] = 16;
+		else if(stats[6] == 17)
+			baseBonuses[8] = 17;
+		else if(stats[6] == 18)
+			baseBonuses[8] = 27;
+		else if(stats[6] == 19)
+			baseBonuses[8] = 29;
+		else
+			baseBonuses[8] = 30;
+			
+		return baseBonuses;
 	}
 	/**
 	 * returns the index at which the number is found in an array.
