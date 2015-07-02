@@ -12,11 +12,15 @@ public class PlayerCreator {
 		int alignment = alignmentSelection(keyb, classes);
 		int[] abilityDice = abilityDiceSelection(classes);
 		int[][] abilities = spreadSheet(abilityDice);
-		int[] stats = columnSelection(keyb, abilities);
+		int[] chosenStats = columnSelection(keyb, abilities);
 		int[] allowedWeapons = weaponProfX(classes);
 		int[] weapons = weaponChoices(keyb, allowedWeapons, classes);
 		int deity = divineChoice(keyb, classes, alignment);
-		
+		double secondarySkill = secondarySkillsCalculator();
+		int[] expNeeded = experienceNeededCalculator(classes);
+		int[] savingThrows = savingThrowCalculator(classes);
+		double[] stats = abilityScoreAdjustment(classes, chosenStats, race, gender);
+		//int[] baseBonuses = baseBonusesCalculator(stats);
 		
 		
 		
@@ -1004,7 +1008,7 @@ public class PlayerCreator {
 							"Nocturnal", "Nemira", "Peryite", "Sanguine", "Sheogorath", "Vaermina"};
 		
 		println("\nPlease enter chosen deity:");
-		for(int i=0; i<dList.length; i++){ //Must be modified to identify pantheons
+		for(int i=0; i<dList.length; i++){
 			if(i==0)
 				println("American Indian Pantheon:");
 			else if(i==10)
@@ -1669,14 +1673,490 @@ public class PlayerCreator {
 		}
 		return deity;
 	}
-
+	/**
+	 * Used in main, this method calculates the characters secondary skill as per the rules in the DMG p.12
+	 * @return integer representing the secondary skill(s) of the character
+	 */
+	public static double secondarySkillsCalculator(){ //TODO Secondary skill method
+		double secondarySkill = (int)(Math.random()*100); //Roll for secondary skill
+		double secondarySkill2 = 0;
+		if(secondarySkill < 68) //If a regular skill, return it.
+			return secondarySkill;
+		else if(secondarySkill > 67 && secondarySkill < 85) //If no skill of measurable worth, return 0
+			return 0;
+		else{
+			while(secondarySkill2 > 84 || secondarySkill > 84){ //If "Roll Twice", keep rolling until neither option is "Roll Twice"
+				secondarySkill = (int)(Math.random()*100);
+				secondarySkill2= (int)(Math.random()*100);
+			}
+			return secondarySkill + (secondarySkill2/100); //Add the secondary skills in such a way that the numbers before the period are one skill, after are another
+		}
+	}
+	/**
+	 * Used in main, this method calculates the experience needed in all classes for the character
+	 * @param classes the integer array representing the classes
+	 * @return integer array representing the value of experience needed in each class
+	 */
+	public static int[] experienceNeededCalculator(int[] classes){ //TODO Experience needed method
+		int[] expNeeded = new int[classes.length];
+		for(int i=0;i<classes.length;i++)
+			if(classes[i] == 1)
+				expNeeded[i] = 2500;
+			else if(classes[i] == 2)
+				expNeeded[i] = 2750;
+			else if(classes[i] == 3)
+				expNeeded[i] = 1500;
+			else if(classes[i] == 4)
+				expNeeded[i] = 2000;
+			else if(classes[i] == 5)
+				expNeeded[i] = 2000;
+			else if(classes[i] == 6)
+				expNeeded[i] = 6000;
+			else if(classes[i] == 7)
+				expNeeded[i] = 2250;
+			else if(classes[i] == 8)
+				expNeeded[i] = 2500;
+			else if(classes[i] == 9)
+				expNeeded[i] = 2250;
+			else if(classes[i] == 10 || classes[i] == 11)
+				expNeeded[i] = 1250;
+			else if(classes[i] == 12)
+				expNeeded[i] = 1500;
+			else if(classes[i] == 13)
+				expNeeded[i] = 2250;
+			else if(classes[i] == 14)
+				expNeeded[i] = 100000; //Unknown value for Bard class
+		return expNeeded;
+	}
+	/**
+	 * Used in main, this method calculates the characters saving throws based on their class selection.
+	 * @param classes, integer array representing the chosen classes
+	 * @return integer array representing the best combination of saving throws for the character
+	 */
+	public static int[] savingThrowCalculator(int[] classes){ //TODO Saving throw method
+		int[] savingThrows = new int[5];
+		
+		if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || //Paralyzation, Poison
+				classes[classes.length-1] == 4)																										// or Death Magic
+			savingThrows[1] = 10;
+		else if(classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || classes[classes.length/2] == 11 ||
+				classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 || classes[0] == 13 || 
+				classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)
+			savingThrows[1] = 13;
+		else if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9
+				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
+			savingThrows[1] = 14;
+		else
+			savingThrows[1] = 16;
+		if(classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || classes[classes.length/2] == 11 || //Petrification/Polymorph
+				classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 || classes[0] == 13 || 
+				classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)
+			savingThrows[2] = 12;
+		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
+				classes[classes.length-1] == 4 || classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 || 
+				classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
+			savingThrows[2] = 13;
+		else
+			savingThrows[2] = 17;
+		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Rod, Staff, or Wand
+				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
+			savingThrows[3] = 11;
+		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
+					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
+					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
+					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
+					classes[classes.length-1] == 14)
+			savingThrows[3] = 14;
+		else
+			savingThrows[3] = 18;
+		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Breath Weapon
+				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
+			savingThrows[4] = 15;
+		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
+					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
+					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
+					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
+					classes[classes.length-1] == 14)
+			savingThrows[4] = 16;
+		else
+			savingThrows[4] = 20;
+		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Spell
+				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
+			savingThrows[5] = 12;
+		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
+					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
+					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
+					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
+					classes[classes.length-1] == 14)
+			savingThrows[5] = 15;
+		else
+			savingThrows[5] = 19;
+		
+		return savingThrows;
+	}
+	public static double[] abilityScoreAdjustment(int[] classes, int[] chosenStats, int race, int gender){ //TODO Ability score adjustment method
+		if(race == 3){
+			chosenStats[0] += 1;
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[6] += 2;
+		}
+		else if(race == 4){
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[6] += 2;
+		}
+		else if(race == 5){
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[0] += 2;
+			chosenStats[6] += 2;
+		}
+		else if(race == 6){
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[6] += 2;
+		}
+		else if(race == 7){
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[6] += 2;
+		}
+		else if(race == 8){
+			chosenStats[3] += 1;
+			chosenStats[4] += -1;
+			chosenStats[0] += 1;
+			chosenStats[1] += -1;
+			chosenStats[6] += 1;
+		}
+		else if(race == 9 || race == 10 || race == 11){
+			chosenStats[4] += 1;
+			chosenStats[5] += -1;
+			chosenStats[6] += -1;
+		}
+		else if(race == 12 || race == 13){
+			chosenStats[6] += -1;
+		}
+		else if(race == 14){
+			chosenStats[6] += 1;
+		}
+		else if(race == 15){
+			chosenStats[3] += 1;
+			chosenStats[0] += -1;
+		}
+		else if(race == 16){
+			chosenStats[0] += 1;
+			chosenStats[4] += 1;
+			chosenStats[5] += -2;
+			chosenStats[6] += -3;
+		}
+			
+		if(gender == 1 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8)){
+			if(chosenStats[0] < 3)
+				chosenStats[0] = 3;
+			else if(chosenStats[0] > 18)
+				chosenStats[0] = 18;
+			if(chosenStats[1] < 8)
+				chosenStats[1] = 8;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 7)
+				chosenStats[3] = 7;
+			else if(chosenStats[3] > 19)
+				chosenStats[3] = 19;
+			if(chosenStats[4] < 6)
+				chosenStats[4] = 6;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 8)
+				chosenStats[5] = 8;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 2 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8)){
+			if(chosenStats[0] < 3)
+				chosenStats[0] = 3;
+			else if(chosenStats[0] > 16)
+				chosenStats[0] = 16;
+			if(chosenStats[1] < 8)
+				chosenStats[1] = 8;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 7)
+				chosenStats[3] = 7;
+			else if(chosenStats[3] > 19)
+				chosenStats[3] = 19;
+			if(chosenStats[4] < 6)
+				chosenStats[4] = 6;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 8)
+				chosenStats[5] = 8;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 1 && (race == 9 || race == 10 || race == 11)){
+			if(chosenStats[0] < 8)
+				chosenStats[0] = 8;
+			else if(chosenStats[0] > 18)
+				chosenStats[0] = 18;
+			if(chosenStats[1] < 3)
+				chosenStats[1] = 3;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 3)
+				chosenStats[3] = 3;
+			else if(chosenStats[3] > 17)
+				chosenStats[3] = 17;
+			if(chosenStats[4] < 12)
+				chosenStats[4] = 12;
+			else if(chosenStats[4] > 19)
+				chosenStats[4] = 19;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 16)
+				chosenStats[5] = 16;
+		}
+		else if(gender == 2 && (race == 9 || race == 10 || race == 11)){
+			if(chosenStats[0] < 8)
+				chosenStats[0] = 8;
+			else if(chosenStats[0] > 17)
+				chosenStats[0] = 17;
+			if(chosenStats[1] < 3)
+				chosenStats[1] = 3;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 3)
+				chosenStats[3] = 3;
+			else if(chosenStats[3] > 17)
+				chosenStats[3] = 17;
+			if(chosenStats[4] < 12)
+				chosenStats[4] = 12;
+			else if(chosenStats[4] > 19)
+				chosenStats[4] = 19;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 16)
+				chosenStats[5] = 16;
+		}
+		else if(gender == 1 && (race == 12 || race == 13)){
+			if(chosenStats[0] < 6)
+				chosenStats[0] = 6;
+			else if(chosenStats[0] > 18)
+				chosenStats[0] = 18;
+			if(chosenStats[1] < 7)
+				chosenStats[1] = 7;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 3)
+				chosenStats[3] = 3;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 8)
+				chosenStats[4] = 8;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 2 && (race == 12 || race == 13)){
+			if(chosenStats[0] < 6)
+				chosenStats[0] = 6;
+			else if(chosenStats[0] > 15)
+				chosenStats[0] = 15;
+			if(chosenStats[1] < 7)
+				chosenStats[1] = 7;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 3)
+				chosenStats[3] = 3;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 8)
+				chosenStats[4] = 8;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 1 && (race == 14)){
+			if(chosenStats[0] < 3)
+				chosenStats[0] = 3;
+			else if(chosenStats[0] > 18)
+				chosenStats[0] = 18;
+			if(chosenStats[1] < 4)
+				chosenStats[1] = 4;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 6)
+				chosenStats[3] = 6;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 6)
+				chosenStats[4] = 6;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 2 && (race == 14)){
+			if(chosenStats[0] < 3)
+				chosenStats[0] = 3;
+			else if(chosenStats[0] > 17)
+				chosenStats[0] = 17;
+			if(chosenStats[1] < 4)
+				chosenStats[1] = 4;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 18)
+				chosenStats[2] = 18;
+			if(chosenStats[3] < 6)
+				chosenStats[3] = 6;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 6)
+				chosenStats[4] = 6;
+			else if(chosenStats[4] > 18)
+				chosenStats[4] = 18;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 1 && (race == 15)){
+			if(chosenStats[0] < 6)
+				chosenStats[0] = 6;
+			else if(chosenStats[0] > 17)
+				chosenStats[0] = 17;
+			if(chosenStats[1] < 6)
+				chosenStats[1] = 6;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 17)
+				chosenStats[2] = 17;
+			if(chosenStats[3] < 8)
+				chosenStats[3] = 8;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 10)
+				chosenStats[4] = 10;
+			else if(chosenStats[4] > 19)
+				chosenStats[4] = 19;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(gender == 2 && (race == 15)){
+			if(chosenStats[0] < 6)
+				chosenStats[0] = 6;
+			else if(chosenStats[0] > 14)
+				chosenStats[0] = 14;
+			if(chosenStats[1] < 6)
+				chosenStats[1] = 6;
+			else if(chosenStats[1] > 18)
+				chosenStats[1] = 18;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 17)
+				chosenStats[2] = 17;
+			if(chosenStats[3] < 8)
+				chosenStats[3] = 8;
+			else if(chosenStats[3] > 18)
+				chosenStats[3] = 18;
+			if(chosenStats[4] < 10)
+				chosenStats[4] = 10;
+			else if(chosenStats[4] > 19)
+				chosenStats[4] = 19;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 18)
+				chosenStats[5] = 18;
+		}
+		else if(race == 16){
+			if(chosenStats[0] < 6)
+				chosenStats[0] = 6;
+			else if(chosenStats[0] > 18)
+				chosenStats[0] = 18;
+			if(chosenStats[1] < 3)
+				chosenStats[1] = 3;
+			else if(chosenStats[1] > 17)
+				chosenStats[1] = 17;
+			if(chosenStats[2] < 3)
+				chosenStats[2] = 3;
+			else if(chosenStats[2] > 14)
+				chosenStats[2] = 14;
+			if(chosenStats[3] < 3)
+				chosenStats[3] = 3;
+			else if(chosenStats[3] > 17)
+				chosenStats[3] = 17;
+			if(chosenStats[4] < 13)
+				chosenStats[4] = 13;
+			else if(chosenStats[4] > 19)
+				chosenStats[4] = 19;
+			if(chosenStats[5] < 3)
+				chosenStats[5] = 3;
+			else if(chosenStats[5] > 12)
+				chosenStats[5] = 12;
+		}
+		double[] stats = new double[7];
+		double strength = chosenStats[0];
+		if(classes[0] == 1 || classes[classes.length/2] == 1 || classes[classes.length-1] == 1 || classes[0] == 2 || classes[classes.length/2] == 2 || 
+				classes[classes.length-1] == 2 || classes[0] == 5 || classes[classes.length/2] == 5 || classes[classes.length-1] == 5 || classes[0] == 6 || 
+				classes[classes.length/2] == 6 || classes[classes.length-1] == 6 || classes[0] == 7 || classes[classes.length/2] == 7 || classes[classes.length-1] == 7)
+			strength += Math.random() + 0.01;
+		
+		stats[0] = strength;
+		for(int i=0; i<6; i++)
+			stats[i+1] = chosenStats[i+1];
+		
+		return stats;
+	}
 	/**
 	 * returns the index at which the number is found in an array.
 	 * @param choice, the number the method searches for.
 	 * @param options, the array the method searches in.
 	 * @return the index at which the number is found.
 	 */
-	public static int isFound(int choice, int[] options){
+	public static int isFound(int choice, int[] options){ //TODO utility methods
 		
 		for(int i = 0; i < options.length; i++){
 			if(choice == options[i])
