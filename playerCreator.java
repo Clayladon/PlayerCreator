@@ -1331,15 +1331,7 @@ public class PlayerCreator {
 				error("Clerics must be the same alignment as their deity");
 			else if (deity == 94 && classes[0] == 3 && alignment != 3 || deity == 94 && classes[classes.length/2] == 3 && alignment != 3 || 
 					deity == 94 && classes[classes.length-1] == 3 && alignment != 3)
-				error("Clerics must be the same alignment as their deity"
-						/**
-						 * Used in main, this method modifies ability scores to correspond with race modifications, race max/min, gender max/min, and class modifications
-						 * @param classes, the integer array representing the classes of the character
-						 * @param chosenStats, the ability scores chosen by the user
-						 * @param race, the race of the character
-						 * @param gender, the gender of the character
-						 * @return integer array representing the final ability scores of the player character
-						 */);
+				error("Clerics must be the same alignment as their deity");
 			else if (deity == 95 && classes[0] == 3 && alignment != 5 || deity == 95 && classes[classes.length/2] == 3 && alignment != 5 || 
 					deity == 95 && classes[classes.length-1] == 3 && alignment != 5)
 				error("Clerics must be the same alignment as their deity");
