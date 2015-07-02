@@ -1794,6 +1794,14 @@ public class PlayerCreator {
 		
 		return savingThrows;
 	}
+	/**
+	 * Used in main, this method modifies ability scores to correspond with race modifications, race max/min, gender max/min, and class modifications
+	 * @param classes, the integer array representing the classes of the character
+	 * @param chosenStats, the ability scores chosen by the user
+	 * @param race, the race of the character
+	 * @param gender, the gender of the character
+	 * @return integer array representing the final ability scores of the player character
+	 */
 	public static double[] abilityScoreAdjustment(int[] classes, int[] chosenStats, int race, int gender){ //TODO Ability score adjustment method
 		if(race == 3){
 			chosenStats[0] += 1;
