@@ -22,6 +22,8 @@ public class PlayerCreator {
 		int[] savingThrows = savingThrowCalculator(classes);
 		double[] stats = abilityScoreAdjustment(classes, chosenStats, race, gender);
 		int[] baseBonuses = baseBonusesCalculator(stats);
+		int height = heightCalculator(race, gender);
+		int weight = weightCalculator(race, gender);
 		
 		
 		
@@ -2302,6 +2304,92 @@ public class PlayerCreator {
 			baseBonuses[8] = 30;
 			
 		return baseBonuses;
+	}
+	/**
+	 * Used in main, this method calculates the character's height based on their race and gender
+	 * @param race, the race of the character
+	 * @param gender, the gender of the character
+	 * @return integer representing the height (in inches) of the character
+	 */
+	public static int heightCalculator (int race, int gender){ //TODO height method
+		int height;
+		if(gender == 1 && race == 1)
+			height = 84 + ((int)(Math.random() * 5) -2);
+		else if(gender == 2 && race == 1)
+			height = 72 + ((int)(Math.random() * 5) -2);
+		else if(gender == 1 && race == 2)
+			height = 72 + ((int)(Math.random() * 25) -12);
+		else if(gender == 2 && race == 2)
+			height = 66 + ((int)(Math.random() * 13) -6);
+		else if(gender == 1 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8))
+			height = 60 + ((int)(Math.random() * 13) -6);
+		else if(gender == 2 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8))
+			height = 54 + ((int)(Math.random() * 13) -6);
+		else if(gender == 1 && (race == 9 || race == 10 || race == 11))
+			height = 48 + ((int)(Math.random() * 13) -6);
+		else if(gender == 2 && (race == 9 || race == 10 || race == 11))
+			height = 46 + ((int)(Math.random() * 9) -4);
+		else if(gender == 1 && (race == 12 || race == 13))
+			height = 42 + ((int)(Math.random() * 7) -3);
+		else if(gender == 2 && (race == 12 || race == 13))
+			height = 39 + ((int)(Math.random() * 7) -3);
+		else if(gender == 1 && race == 14)
+			height = 66 + ((int)(Math.random() * 13) -6);
+		else if(gender == 2 && race == 14)
+			height = 62 + ((int)(Math.random() * 13) -6);
+		else if(gender == 1 && race == 15)
+			height = 36 + ((int)(Math.random() * 9) -4);
+		else if(gender == 2 && race == 15)
+			height = 33 + ((int)(Math.random() * 7) -3);
+		else if(gender == 1 && race == 16)
+			height = 66 + ((int)(Math.random() * 9) -4);
+		else
+			height = 62 + ((int)(Math.random() * 7) -3);
+		
+		return height;
+	}
+	/**
+	 * Used in main, this method calculates the character's height based on their race and gender
+	 * @param race, the race of the character
+	 * @param gender, the gender of the character
+	 * @return integer representing the height (in inches) of the character
+	 */
+	public static int weightCalculator (int race, int gender){ //TODO weight method
+		int weight;
+		if(gender == 1 && race == 1)
+			weight = 250 + ((int)(Math.random() * 101) -50);
+		else if(gender == 2 && race == 1)
+			weight = 175 + ((int)(Math.random() * 101) -50);
+		else if(gender == 1 && race == 2)
+			weight = 175 + ((int)(Math.random() * 81) -40);
+		else if(gender == 2 && race == 2)
+			weight = 130 + ((int)(Math.random() * 81) -40);
+		else if(gender == 1 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8))
+			weight = 100 + ((int)(Math.random() * 31) -15);
+		else if(gender == 2 && (race == 3 || race == 4 || race == 5 || race == 6 || race == 7 || race == 8))
+			weight = 80 + ((int)(Math.random() * 21) -10);
+		else if(gender == 1 && (race == 9 || race == 10 || race == 11))
+			weight = 150 + ((int)(Math.random() * 41) -20);
+		else if(gender == 2 && (race == 9 || race == 10 || race == 11))
+			weight = 120 + ((int)(Math.random() * 41) -20);
+		else if(gender == 1 && (race == 12 || race == 13))
+			weight = 80 + ((int)(Math.random() * 17) -8);
+		else if(gender == 2 && (race == 12 || race == 13))
+			weight = 75 + ((int)(Math.random() * 17) -8);
+		else if(gender == 1 && race == 14)
+			weight = 130 + ((int)(Math.random() * 41) -20);
+		else if(gender == 2 && race == 14)
+			weight = 100 + ((int)(Math.random() * 31) -15);
+		else if(gender == 1 && race == 15)
+			weight = 60 + ((int)(Math.random() * 21) -10);
+		else if(gender == 2 && race == 15)
+			weight = 50 + ((int)(Math.random() * 17) -8);
+		else if(gender == 1 && race == 16)
+			weight = 150 + ((int)(Math.random() * 61) -30);
+		else
+			weight = 120 + ((int)(Math.random() * 51) -25);
+		
+		return weight;
 	}
 	/**
 	 * returns the index at which the number is found in an array.
