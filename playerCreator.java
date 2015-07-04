@@ -1014,33 +1014,33 @@ public class PlayerCreator {
 		for(int i=0; i<dList.length; i++){
 			if(i==0)
 				println("American Indian Pantheon:");
-			else if(i==10)
+			else if(i==9)
 				println("Babylonian Pantheon:");
-			else if(i==18)
+			else if(i==17)
 				println("Celtic Pantheon:");
-			else if(i==30)
+			else if(i==29)
 				println("Central American Pantheon:");
-			else if(i==42)
+			else if(i==41)
 				println("Chinese Pantheon:");
-			else if(i==57)
+			else if(i==56)
 				println("Egyptian Pantheon:");
-			else if(i==74)
+			else if(i==73)
 				println("Finnish Pantheon:");
-			else if(i==85)
+			else if(i==84)
 				println("Greek Pantheon:");
-			else if(i==103)
+			else if(i==102)
 				println("Indian Pantheon:");
-			else if(i==116)
+			else if(i==115)
 				println("Japanese Pantheon:");
-			else if(i==126)
+			else if(i==125)
 				println("Nehwon Pantheon:");
-			else if(i==139)
+			else if(i==138)
 				println("Nonhuman Pantheon:");
-			else if(i==163)
+			else if(i==162)
 				println("Norse Pantheon:");
-			else if(i==182)
+			else if(i==181)
 				println("Sumerian Pantheon:");
-			else if(i==189)
+			else if(i==188)
 				println("Daedric Pantheon:");
 			
 			println("\t" + (i+1) + ". \t" + dList[i]);
@@ -1682,15 +1682,18 @@ public class PlayerCreator {
 	 * @return String representing character's name
 	 */
 	public static String nameSelection(Scanner keyb){ //TODO Name method
-		print("Please enter your character's name:");
-		String name = keyb.nextLine();
 		boolean flag9 = true;
+		String name = null;
 		
 		while(flag9){
+			print("Please enter your character's name:");
+			keyb.nextLine();
+			name = keyb.nextLine();
+		
 			println(name + " is your character's name. Are you sure?(y/n)");
-			if(keyb.next() != "y");
-			else
+			if(keyb.next().equalsIgnoreCase("y")){
 				flag9 = false;
+			}
 		}
 		return name;
 	}
@@ -1759,59 +1762,59 @@ public class PlayerCreator {
 		
 		if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || //Paralyzation, Poison
 				classes[classes.length-1] == 4)																										// or Death Magic
-			savingThrows[1] = 10;
+			savingThrows[0] = 10;
 		else if(classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || classes[classes.length/2] == 11 ||
 				classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 || classes[0] == 13 || 
 				classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)
-			savingThrows[1] = 13;
+			savingThrows[0] = 13;
 		else if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9
 				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
-			savingThrows[1] = 14;
+			savingThrows[0] = 14;
 		else
-			savingThrows[1] = 16;
+			savingThrows[0] = 16;
 		if(classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || classes[classes.length/2] == 11 || //Petrification/Polymorph
 				classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 || classes[0] == 13 || 
 				classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || classes[classes.length-1] == 14)
-			savingThrows[2] = 12;
+			savingThrows[1] = 12;
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 				classes[classes.length-1] == 4 || classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 || 
 				classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
-			savingThrows[2] = 13;
+			savingThrows[1] = 13;
 		else
-			savingThrows[2] = 17;
+			savingThrows[1] = 17;
 		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Rod, Staff, or Wand
 				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
-			savingThrows[3] = 11;
+			savingThrows[2] = 11;
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
 					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
 					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
 					classes[classes.length-1] == 14)
-			savingThrows[3] = 14;
+			savingThrows[2] = 14;
 		else
-			savingThrows[3] = 18;
+			savingThrows[2] = 18;
 		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Breath Weapon
 				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
-			savingThrows[4] = 15;
+			savingThrows[3] = 15;
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
 					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
 					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
 					classes[classes.length-1] == 14)
-			savingThrows[4] = 16;
+			savingThrows[3] = 16;
 		else
-			savingThrows[4] = 20;
+			savingThrows[3] = 20;
 		if(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8 || classes[0] == 9 //Spell
 				|| classes[classes.length/2] == 9 || classes[classes.length-1] == 9)
-			savingThrows[5] = 12;
+			savingThrows[4] = 12;
 		else if(classes[0] == 3 || classes[classes.length/2] == 3 || classes[classes.length-1] == 3 || classes[0] == 4 || classes[classes.length/2] == 4 || 
 					classes[classes.length-1] == 4 || classes[0] == 10 || classes[classes.length/2] == 10 || classes[classes.length-1] == 10 || classes[0] == 11 || 
 					classes[classes.length/2] == 11 || classes[classes.length-1] == 11 ||classes[0] == 12 || classes[classes.length/2] == 12 || classes[classes.length-1] == 12 
 					|| classes[0] == 13 || classes[classes.length/2] == 13 || classes[classes.length-1] == 13 || classes[0] == 14 || classes[classes.length/2] == 14 || 
 					classes[classes.length-1] == 14)
-			savingThrows[5] = 15;
+			savingThrows[4] = 15;
 		else
-			savingThrows[5] = 19;
+			savingThrows[4] = 19;
 		
 		return savingThrows;
 	}
@@ -2184,7 +2187,7 @@ public class PlayerCreator {
 	 * @param stats, the ability scores of the character
 	 * @return integer array representing the base bonuses of the character
 	 */
-	public static int[] baseBonusesCalculator(double[] stats){
+	public static int[] baseBonusesCalculator(double[] stats){ //TODO Base bonuses method
 		int[] baseBonuses = new int[9];
 		
 		if(stats[0] < 16);  	//Strength bonuses
