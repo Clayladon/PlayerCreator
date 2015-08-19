@@ -1667,11 +1667,338 @@ public class PlayerCreator {
 			else if (deity == 205 && classes[0] == 3 && alignment != 3 || deity == 205 && classes[classes.length/2] == 3 && alignment != 3 || 
 					deity == 205 && classes[classes.length-1] == 3 && alignment != 3)
 				error("Clerics must be the same alignment as their deity");
-			
-			
-			
-			
-			else
+			else if(deity == 2 && alignment != 8 && ((classes[0] < 10 || classes[0] > 11) && (classes[classes.length/2] > 11 || classes[classes.length/2] < 10) && (classes[classes.length-1] > 11 || classes[classes.length-1] < 10)))
+					error("Those who worship the Coyote must be of chaotic neutral alignment and/or be thieves.");
+			else if(deity == 5 && !(alignment == 1 || alignment ==4 || alignment == 7))
+				error("Those who worship Heng must be of good alignment.");
+			else if(deity == 6 && alignment != 7)
+				error("Those who worship Hotoru must be of chaotic good alignment.");
+			else if(deity == 8 && alignment != 7)
+				error("Those who worship the Snake-Man must be of chaotic good alignment.");
+			else if(deity == 9 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Tobadzistsini must be warriors (fighter/fighter sub classes).");
+			else if(deity == 11 && !(alignment == 6 || alignment == 9))
+				error("Those who worship Anshar must be of either neutral evil or chaotic evil alignment.");
+			else if(deity == 12 && alignment != 3)
+				error("Those who worship Druaga must be of the lawful evil alignment.");
+			else if(deity == 13 && !(alignment == 1 || alignment == 4))
+				error("Those who worship Girru must of either lawful good or neutral good alignment.");
+			else if(deity == 15 && alignment != 2)
+				error("Those who worship Marduk must be of lawful neutral alignment.");
+			else if(deity == 16 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Nergal must be of evil alignment");
+			else if(deity == 17 && !(alignment == 2 || alignment == 5 || alignment == 8))
+				error("Those who worship Ramman must be neutral.");
+			else if(deity == 18 && !(alignment == 2 || alignment == 5 || alignment == 8))
+				error("Those who worship Ramman must be neutral.");
+			else if(deity == 19 && (alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Arawn must be of non-good alignment.");
+			else if(deity == 22 && alignment != 5)
+				error("Those who worship Dunatis must be of true neutral alignment.");
+			else if(deity == 24 && alignment != 5)
+				error("Those who worship Lugh must be of true neutral alignment.");
+			else if(deity == 26 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Morrigan must be warriors (fighter/fighter sub classes).");
+			else if(deity == 27 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Nuada must be warriors (fighter/fighter sub classes).");
+			else if(deity == 28 && alignment != 5)
+				error("Those who worship Oghma must be of true neutral alignment.");
+			else if(deity == 32 && alignment != 9)
+				error("Those who worship Camazotz must be of chaotic evil alignment.");
+			else if(deity == 34 && alignment != 9)
+				error("Those who worship Huhueteotl must be of chaotic evil alignment.");
+			else if(deity == 35 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Huitzilopochtli must be warriors (fighter/fighter sub classes).");
+			else if(deity == 36 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Itzamna must be of good alignment.");
+			else if(deity == 38 && alignment != 9)
+				error("Those who worship Tezcatlipoca must be of chaotic evil alignment.");
+			else if(deity == 40 && alignment != 9)
+				error("Those who worship Tlazolteotl must be of chaotic evil alignment.");
+			else if(deity == 43 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Chao Kung Ming must be warriors (fighter/fighter sub classes).");
+			else if(deity == 44 && alignment != 3 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Chih-Chiang Fyu-Ya must be archers (fighter/fighter sub classes) or of lawful evil alignment.");
+			else if(deity == 46 && alignment != 1)
+				error("Those who worship Chung Kuel must be of lawful good alignment");
+			else if(deity == 47 && alignment != 4)
+				error("Those who worship the counts of the wind must be of neutral good alignment.");
+			else if(deity == 48 && alignment !=7 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Huan-Ti must be warriors (fighter/fighter sub classes).");
+			else if(deity == 49 && alignment != 1)
+				error("Those who worship Kuan Yin must be of lawful good alignment.");
+			else if(deity == 50 && alignment != 3)
+				error("Those who worship Lei Kung must be of lawful evil alignment.");
+			else if(deity == 51 && alignment != 9)
+				error("Those who worship Lu Yueh must be of chaotic evil alignment.");
+			else if(deity == 52 && !(classes[0] == 10 || classes[0] ==11 || classes[classes.length/2] == 10 || classes[classes.length/2] == 11 || classes[classes.length-1] == 10 || classes[classes.length-1] == 11))
+				error("Those who worship No Cha must be thieves.");
+			else if(deity == 54 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Tou Mu must be of evil alignment.");
+			else if(deity == 55 && alignment != 8)
+				error("Those who worship Wen Chung must be of chaotic neutral alignment.");
+			else if(deity == 56 && alignment != 5)
+				error("Those who worship Yen-Wang-Yeh must be of true neutral alignment.");
+			else if(deity == 57 && alignment != 4)
+				error("Those who worship Ra must be of neutral good alignment.");
+			else if(deity == 58 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Anhur must be warriors (fighter/fighter sub classes).");
+			else if(deity == 61 && !(alignment == 6 || alignment == 7 || alignment ==9))
+				error("Those who worship Bast must be of chaotic alignment.");
+			else if(deity == 63 && !(alignment == 4 || alignment == 5 || alignment == 6))
+				error("Those who worship Geb must be of neutral alignment.");
+			else if(deity == 64 && alignment != 2)
+				error("Those who worship Horus must be of lawful neutral alignment.");
+			else if(deity == 65 && alignment != 4)
+				error("Those who worship Isis must be of neutral good alignment.");
+			else if(deity == 66 && alignment != 7)
+				error("Those who worship Nephthis must be of chaotic good alignment.");
+			else if(deity == 67 && alignment != 1)
+				error("Those who worship Osiris must be of lawful good alignment.");
+			else if(deity == 68 && alignment != 2)
+				error("Those who worship Ptah must be of lawful neutral alignment.");
+			else if(deity == 70 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Set must be of evil alignment.");
+			else if(deity == 71 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Shu must be of good alignment.");
+			else if(deity == 72 && alignment != 1)
+				error("Those who worsip Tefnut must be of lawful good alignment.");
+			else if(deity == 74 && alignment != 4)
+				error("Those who worship Ahto must be of neutral good alignment.");
+			else if(deity == 75 && alignment != 9)
+				error("Those who worship Kiputytto must be of chaotic evil alignment.");
+			else if(deity == 76 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Mielikki must be of good alignment.");
+			else if(deity == 77 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Loviatar must be of evil alignment.");
+			else if(deity == 78 && alignment != 9)
+				error("Those who worship Hiisi must be of chaotic evil alignment.");
+			else if(deity == 79 && !(alignment == 1 || alignment == 2 || alignment == 3))
+				error("Those who worship Ilmatar must be of lawful alignment.");
+			else if(deity == 80 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Surma must be of evil alignmnet.");
+			else if(deity == 81 && alignment != 9)
+				error("Those who worship Tuonetar must be of chaotic evil alignment.");
+			else if(deity == 82 && !(alignment == 7 || alignment == 8 || alignment == 9))
+				error("Those who worship Tuoni must be of chaotic alignment.");
+			else if(deity == 83 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Ukko must be of good alignment.");
+			else if(deity == 84 && alignment != 5)
+				error("Those who worship Untamo must be of true neutral alignment.");
+			else if(deity == 85 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Zeus must be of good alignment.");
+			else if(deity == 86 && !(alignment == 7 || alignment == 8 || alignment == 9))
+				error("Those who worship Aphrodite must be of chaotic alignment.");
+			else if(deity == 88 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Ares must be warriors (fighter/fighter sub classes).");
+			else if(deity == 89 && alignment != 5)
+				error("Those who worship Artemis must be of true neutral alignment.");
+			else if(deity == 90 && alignment != 1 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Athena must either be of lawful good alignment or warriors (fighter/fighter sub classes).");
+			else if(deity == 91 && (alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Demeter must be of non-evil alignment.");
+			else if(deity == 92 && !(alignment == 7 || alignment == 8 || alignment == 9))
+				error("Those who worship Dionysus must be of chaotic alignment.");
+			else if(deity == 93 && alignment != 6)
+				error("Those who worship Hades must be of neutral evil alignment.");
+			else if(deity == 94 && !(classes[0] == 3 || classes[0] == 4 || classes[0] == 8 || classes[0] == 9 || classes[classes.length/2] == 3 || classes[classes.length/2] == 4 || classes[classes.length/2] == 8|| classes[classes.length/2] == 9 || classes[classes.length-1] == 3 || classes[classes.length-1] == 4 || classes[classes.length-1] == 8 || classes[classes.length-1] == 9))
+				error("Those who do not wield magic may not worship Hecate.");
+			else if(deity == 97 && !(alignment == 4 || alignment == 5 || alignment == 6 || classes[0] == 10 || classes[0] == 11 || classes[classes.length/2] == 10 || classes[classes.length/2] == 11 || classes[classes.length-1] == 10 || classes[classes.length-1] == 11))
+				error("Those who worship Hermes must be of neutral alignment and/or thieves.");
+			else if(deity == 98 && alignment != 2)
+				error("Those who worship Nike must be of lawful neutral alignment.");
+			else if(deity == 99 && alignment != 8)
+				error("Those who worship Pan must be of chaotic neutral alignment.");
+			else if(deity == 101 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Prometheus must be of good alignment.");
+			else if(deity == 102 && !(alignment == 4 || alignment == 5 || alignment ==6))
+				error("Those who worship Tyche must be of neutral alignment.");
+			else if(deity == 103 && alignment != 8)
+				error("Those who worship Indra must be of chaotic neutral alignment.");
+			else if(deity == 104 && alignment !=8)
+				error("Those who worship Agni must be of chaotic neutral alignment.");
+			else if(deity == 105 && alignment != 9)
+				error("Those who worship Kali must be of chaotic neutral.");
+			else if(deity == 106 && alignment != 4 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Karttikeya must be of chaotic good alignment and/or be warriors (fighter/fighter sub classes).");
+			else if(deity == 107 && alignment != 4)
+				error("Those who worship Lakshmi must be of chaotic good alignment.");
+			else if(deity == 108 && !(alignment == 6 || classes[0] == 10 || classes[0] == 11 || classes[classes.length/2] == 10 || classes[classes.length/2] == 11 || classes[classes.length-1] == 10 || classes[classes.length-1] == 11))
+				error("Those who worship Ratri must be of neutral evil alignment and/or be thieves.");
+			else if(deity == 109 && alignment != 2)
+				error("Those who worship Rudra must be of lawful neutral alignment.");
+			else if(deity == 110 && alignment != 1)
+				error("Those who worship Surya must be of lawful good alignment.");
+			else if(deity == 111 && alignment != 5)
+				error("Those who worship Tvashtri must be of true neutral alignment.");
+			else if(deity == 112 && alignment != 4)
+				error("Those who worship Ushas must be of neutral good alignment.");
+			else if(deity == 113 && alignment !=2)
+				error("Those who worship Varuna must be of lawful good alignment.");
+			else if(deity == 114 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Vishnu must be of good alignment.");
+			else if(deity == 115 && !(alignment == 4 || alignment == 5 || alignment == 6))
+				error("Those who worship Yama must be of neutral alignment.");
+			else if(deity == 116 && alignment != 1)
+				error("Those who worship Amaterasu Omikami must be of lawful good alignment.");
+			else if(deity == 119 && alignment != 1)
+				error("Those who worship Ebisu must be of lawful good alignment.");
+			else if(deity == 120 && (!(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Hachiman must be warriors (fighter/fighter sub classes).");
+			else if(deity == 122 && !(alignment == 1 || alignment == 4 || alignment == 7 || alignment == 8))
+				error("Those who worship Oh-Kuni-Nushi must be of either good or chaotic non evil alignment.");
+			else if(deity == 123 && alignment != 5)
+				error("Those who worship Raiden must be of true neutral alignment.");
+			else if(deity == 124 && !(alignment == 7 || alignment == 8 || alignment == 9))
+				error("Those who worship Susanowo must be of chaotic alignment.");
+			else if(deity == 125 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Tsukiyomi must be of good alignment.");
+			else if(deity == 126 && alignment != 2)
+				error("Those who worship Aarth must be of lawful good alignment.");
+			else if(deity == 128 && alignment != 6)
+				error("Those who worship the gods of Lankhmar must be of neutral evil alignment.");
+			else if(deity == 129 && alignment != 9)
+				error("Those who worship the gods of Trouble must be of chaotic evil alignment.");
+			else if(deity == 130 && alignment != 9)
+				error("Those who worship Hate must be chaotic evil.");
+			else if(deity == 131 && alignment != 1)
+				error("Those who worship Issek of the Jug must be lawful good.");
+			else if(deity == 132 && (!(alignment == 4 || alignment == 5 || alignment == 6) && !(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worship Kos must be of neutral alignment and/or warriors (fighter/fighter sub classes).");
+			else if(deity == 133 && alignment != 9)
+				error("Those who worship the Nehwon Earth god must be of chaotic evil alignment.");
+			else if(deity == 134 && alignment != 9)
+				error("Those who worship the Rat god must be of chaotic evil alignment.");
+			else if(deity == 135 && (!(alignment == 4 || alignment == 5 || alignment == 6) && !(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7)))
+				error("Those who worhsip the Red god must be of neutral alignment or be warriors.");
+			else if(deity == 136 && alignment != 9)
+				error("Those who worhsip the Spider god must be of chaotic evil alignment.");
+			else if(deity == 137 && alignment != 9)
+				error("Those who worship Tyaa must be of chaotic evil alignment.");
+			else if(deity == 138 && alignment != 1)
+				error("Those who worship Votishal must be of lawful good alignment.");
+			else if(deity == 139 && alignment != 9)
+				error("Those who worship Hruggek must be of chaotic evil alignment.");
+			else if(deity == 140 && !(alignment == 4 || alignment == 7))
+				error("Those who worship Skerrit must be of chaotic good or neutral good alignment.");
+			else if(deity == 141 && alignment != 1)
+				error("Those who worship Moradin must be of lawful good alignment.");
+			else if(deity == 142 && alignment != 7)
+				error("Those who worship Corelion Larethian must be of chaotic good alignment.");
+			else if(deity == 143 && alignment != 7)
+				error("Those who worship Deep Sashelas must be of chaotic good alignment.");
+			else if(deity == 144 && alignment != 9)
+				error("Those who worship Lolth must be of chaotic evil alignment.");
+			else if(deity == 145 && alignment != 7)
+				error("Those who worship Rillifane Rallathil must be of chaotic good alignment.");
+			else if(deity == 146 && alignment != 6)
+				error("Those who worship Surtur must be of lawful evil alignment.");
+			else if(deity == 147 && alignment != 9)
+				error("Those who worship Thrym must be of chaotic evil alignment.");
+			else if(deity == 148 && alignment != 9)
+				error("Those who worship Grolantor must be of chaotic evil alignment.");
+			else if(deity == 149 && alignment != 5)
+				error("Those who worship Skoraeus Stonebones must be of true neutral alignment.");
+			else if(deity == 150)
+				error("Those who worship Yeenoghu must be gnolls.");
+			else if(deity == 151 && alignment != 1)
+				error("Those who worship Gark Glittergold must be of lawful good alignment.");
+			else if(deity == 152 && alignment != 3)
+				error("Those who worship Maglubiyet must be of lawful evil alignment.");
+			else if(deity == 153 && alignment != 1)
+				error("Those who worship Yondalla must be of lawful good alignment.");
+			else if(deity == 154)
+				error("Those who worship Demogorgon must be Ixitxachitl.");
+			else if(deity == 155 && alignment != 3)
+				error("Those who worship Kurtulmak must be of lawful evil alignment.");
+			else if(deity == 156 && alignment != 6)
+				error("Those who worhsip Blibdoolpoolp must be of neutral evil alignment.");
+			else if(deity == 157 && alignment != 5)
+				error("Those who worship Semuanya must be of true neutral alignment.");
+			else if(deity == 158 && alignment != 5)
+				error("Those who worship Eadro must be of true neutral alignment.");
+			else if(deity == 159 && alignment != 9)
+				error("Those who worship Vaprak must be of chaotic evil alignment.");
+			else if(deity == 160 && alignment != 3)
+				error("Those who worship Gruumsh must be of lawful evil alignment.");
+			else if(deity == 161 && alignment != 3)
+				error("Those who worship Sekolah must be of lawful evil alignment.");
+			else if(deity == 162 && alignment !=9)
+				error("Those who worship Laogzed must be of chaotic evil alignment.");
+			else if(deity == 163 && !(alignment == 1 || alignment == 2 || alignment == 4 || alignment == 5 || alignment == 7 || alignment == 8))
+				error("Those who worship Odin must be of good or neutral alignment.");
+			else if(deity == 164 && alignment != 8)
+				error("Those who worship Aegir must be of chaotic neutral alignment.");
+			else if(deity == 165 && alignment != 4)
+				error("Those who worship Baldur must be of neutral good alignment.");
+			else if(deity == 166 && alignment != 4)
+				error("Those who worship Bragi must be of neutral good alignment.");
+			else if(deity == 167 && alignment != 1)
+				error("Those who worship Forseti must be of lawful good alignment.");
+			else if(deity == 168 && alignment != 4)
+				error("Those who worship Frey must be of neutral good alignment.");
+			else if(deity == 169 && alignment != 4)
+				error("Those who worship Freya must be of neutral good alignment.");
+			else if(deity == 170 && alignment != 2)
+				error("Those who worship Frigga must be of lawful neutral alignment.");
+			else if(deity == 171 && (alignment != 1 && !(classes[0] == 8 || classes[classes.length/2] == 8 || classes[classes.length-1] == 8)))
+				error("Those who worship Heimdall must be of lawful good alignment or be magic-users.");
+			else if(deity == 173 && alignment != 7)
+				error("Those who worship Idun must be of chaotic good alignment.");
+			else if(deity == 174 && alignment !=9)
+				error("Those who worship Loki must be of chaotic evil alignment.");
+			else if(deity == 175 && alignment != 7)
+				error("Those who worship Modi must be of chaotic good alignment.");
+			else if(deity == 177 && alignment !=7)
+				error("Those who worship Sif must be of chaotic good alignment.");
+			else if(deity == 179 && !(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7))
+				error("Those who worship Tyr must be warriors.");
+			else if(deity == 180 && alignment != 8)
+				error("Those who worship Uller must be of chaotic neutral alignment.");
+			else if(deity == 181 && alignment != 7)
+				error("Those who worship Vidar must be of chaotic good alignment.");
+			else if(deity == 182 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Enlil must be of good alignment.");
+			else if(deity == 183 && alignment != 2)
+				error("Those who worship Enki must be of lawful neutral alignment.");
+			else if(deity == 184 && !(classes[0] == 1 || classes[0] == 2 || classes[0] ==5 || classes[0] == 6 || classes[0] == 7) && !(classes[classes.length/2] == 1 || classes[classes.length/2] == 2 || classes[classes.length/2] == 5 || classes[classes.length/2] == 6 || classes[classes.length/2] == 7) && !(classes[classes.length-1] == 1 || classes[classes.length-1] == 2 || classes[classes.length-1] == 5 || classes[classes.length-1] == 6 || classes[classes.length-1] == 7))
+				error("Those who worship Inanna must be warriors or lovers.");
+			else if(deity == 185 && alignment != 5)
+				error("Those who worship Ki must be of true neutral alignment.");
+			else if(deity == 186 && alignment != 7)
+				error("Those who worship Nanna-Sin must be of chaotic good alignment.");
+			else if(deity == 187 && alignment !=5)
+				error("Those who worship Nin-Hursag must be of true neutral alignment.");
+			else if(deity == 188 && alignment != 7)
+				error("Those who worship Utu must be of chaotic good alignment.");
+			else if(deity == 189 && !(alignment == 1 || alignment == 2 || alignment == 4 || alignment == 5 || alignment == 7 || alignment == 8))
+				error("Those who worship Azura cannot be of evil alignment.");
+			else if(deity == 190 && alignment <= 3)
+				error("Those who worship Boethiah cannot be of lawful alignment.");
+			else if(deity == 191 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Clavicus Vile must be of evil alignment.");
+			else if(deity == 194 && alignment > 3)
+				error("Those who worship Jyggalag must be of lawful alignment.");
+			else if(deity == 195 && alignment != 9)
+				error("Those who worship Malacath must be of chaotic evil alignment.");
+			else if(deity == 196 && alignment != 9)
+				error("Those who worship Mehrunes Dagon must be of chaotic evil alignment.");
+			else if(deity == 197 && !(alignment == 1 || alignment == 4 || alignment == 7))
+				error("Those who worship Meridia must be of good alignment.");
+			else if(deity == 198 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Molag Bal must be of evil alignment.");
+			else if(deity == 199 && alignment < 7)
+				error("Those who worship Mephala must be of chaotic alignment.");
+			else if(deity == 201 && alignment != 9)
+				error("Those who worship Nemira must be of chaotic evil alignment.");
+			else if(deity == 202 && !(alignment == 3 || alignment == 6 || alignment == 9))
+				error("Those who worship Peryite must be of evil alignment.");
+			else if(deity == 203 && alignment < 7)
+				error("Those who worship Sanguine must be of chaotic alignment.");
+			else if(deity == 204 && alignment < 7)
+				error("Those who worship Sheogorath must be of chaotic alignment.");
+			else if(deity == 205 && !(alignment == 2 || alignment == 3 || alignment == 5 || alignment == 6 || alignment == 8 || alignment == 9))
+				error("Those who whorship Vaermina cannot be of good alignment.");
 				flag8 = false;
 		}
 		return deity;
