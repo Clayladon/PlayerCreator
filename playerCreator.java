@@ -24,6 +24,16 @@ public class PlayerCreator {
 		int[] baseBonuses = baseBonusesCalculator(stats);
 		int height = heightCalculator(race, gender);
 		int weight = weightCalculator(race, gender);
+		String birthPlace = birthPlaceCalculator(race);
+		//TODO String[] normalItems = normalItemsCalculator(classes);
+		//TODO int gold = goldCalculator(classes);
+		//TODO int hitPoints = hitPointsCalculator(classes, stats);
+		//TODO String titles = titlesCalculator(classes);
+		//TODO int[] levelMaximum = levelMaximumCalculator(classes, race);
+		//TODO String[] miscInfo = miscInfoCalculator(classes, race, 
+		//TODO classAbilities = classAbilitiesCalculator(classes); //Back of the sheet(s)
+		//TODO String-converter
+		//TODO outwriter
 		
 		
 		
@@ -2720,6 +2730,189 @@ public class PlayerCreator {
 			weight = 120 + ((int)(Math.random() * 51) -25);
 		
 		return weight;
+	}
+	/**
+	 * Used in main, this method calculates the character's birth place based on their race
+	 * @param race, the race of the character
+	 * @return String representing the country of birth of the character
+	 */
+	public static String birthPlaceCalculator(int race){ //TODO birth place method
+		if(race == 1){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Corusk Mts.";
+			else if(randomPlace == 2)
+				return "Griff Mts.";
+			else if(randomPlace == 3)
+				return "Plains of the Paynims";
+			else
+				return "The Great Kingdom";
+		}
+		else if(race == 2){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Great Kingdom";
+			else if(randomPlace == 2)
+				return "Onnwal";
+			else if(randomPlace == 3)
+				return "The Scarlet Brotherhood";
+			else 
+				return "Theocracy of the Pale";
+		}
+		else if(race == 3){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Ket";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else 
+				return "North Province";
+		}
+		else if(race == 4){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Ket";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else 
+				return "North Province";
+		}
+		else if(race == 5){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Ket";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else 
+				return "North Province";
+		}
+		else if(race == 6){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Underdark, city of Erelhei-Cinlu";
+			else if(randomPlace == 2)
+				return "Underdark, city of Undrek'Thoz";
+			else if(randomPlace == 3)
+				return "Underdark, city of Menzoberranzan";
+			else 
+				return "Underdark, city of Karsoluthiyl";
+		}
+		else if(race == 7){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Ket";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else 
+				return "North Province";
+		}
+		else if(race == 8){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Ket";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else 
+				return "North Province";
+		}
+		else if(race == 9){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Gloriole Mts.";
+			else if(randomPlace == 2)
+				return "Crystalmist Mts.";
+			else if(randomPlace == 3)
+				return "Yatil Mts.";
+			else 
+				return "Lortmil Mts.";
+		}
+		else if(race == 10){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Gloriole Mts.";
+			else if(randomPlace == 2)
+				return "Crystalmist Mts.";
+			else if(randomPlace == 3)
+				return "Yatil Mts.";
+			else 
+				return "Lortmil Mts.";
+		}
+		else if(race == 11){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Underdark, city of Gracklstugh";
+			else if(randomPlace == 2)
+				return "Underdark, city of Dunspeirrin";
+			else if(randomPlace == 3)
+				return "Underdark, city of Drik Hargunen";
+			else 
+				return "Underdark, city of Sshamath";
+		}
+		else if(race == 12){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Underdark, city of Blingdenstone";
+			else if(randomPlace == 2)
+				return "Underdark, city of Golothaer";
+			else if(randomPlace == 3)
+				return "Underdark, city of Sschindylryn";
+			else 
+				return "Underdark, city of Ust Natha";
+		}
+		else if(race == 13){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Ratik";
+			else if(randomPlace == 2)
+				return "The Yeomaney";
+			else if(randomPlace == 3)
+				return "Ket";
+			else
+				return "Kingdom of Nyrond";
+		}
+		else if(race == 14){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "The Lordship of Isles";
+			else if(randomPlace == 2)
+				return "Onnwal";
+			else if(randomPlace == 3)
+				return "The Spindrift Isles";
+			else
+				return "Theocracy of the Pale";
+		}
+		else if(race == 15){
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Duchy of Ten";
+			else if(randomPlace == 2)
+				return "Veluna";
+			else if(randomPlace == 3)
+				return "See of Medegia";
+			else
+				return "Ket";
+		}
+		else{
+			int randomPlace =(int)(Math.random()*4+1);
+			if(randomPlace == 1)
+				return "Bone March";
+			else if(randomPlace == 2)
+				return "The Great Kingdom";
+			else if(randomPlace == 3)
+				return "The Scarlet Brotherhood";
+			else
+				return "South Province";
+		}
 	}
 	/**
 	 * returns the index at which the number is found in an array.
